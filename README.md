@@ -9,3 +9,10 @@ Tracks of interest (particularily when comparing a presence/lack of pop, funk an
 This being said, click, scroll, read and listen on, and enjoy!
 
 Playlist Link: https://open.spotify.com/playlist/1pr1bLeDhoRxncuck8qy7B?si=1c6f2c05b2e143f4
+
+Update 20-02-2023:
+The first plot in this repository (DGDplot1) shows the relation between the danceability of DGD's discography and the individual songs' date of release. There are quite a few points of interst to be taken from this graph, namely what appears to be a trend of becoming more danceable over time (a sign of pushing towards conventional "poppiness", or at the very least engaging more in their hybridised funk/hardcore sound). This process runs parallel to a growing popularity of DGD's work over time (though whether that is necessarily due to their danceabiliyt to due to their longevity is up to debate)
+
+Points of concern/what needs to be fixed: I'm looking for a way to get the jitter function to work as to make my sets of vertically aligned points easier to read, but am finding difficulty with it. On a related note, I'd like to make the x-axis more evenly spread out, relying not on the exact date of release but on an actual time scale by year (this might solve my issue with jittering). Organising the albums by release instead of alphabetically might also be nice (or at least labelling the albums based on whcih year they released)
+
+For the next set of plots, I would like to use the same approach to other swancore bands, adding in a line to measure the mean danceability over time. I'd like to make the popularity of a piece more evident by increasing the scale factor for point size. I'd also like to make the difference between points more distinct by setting their fill alpha to a different concentration than their colour alpha.
