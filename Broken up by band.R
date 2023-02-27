@@ -11,16 +11,16 @@ BTplaylist <- get_playlist_audio_features('','4gsZoA8LJMhQSiHU0ssakc')
 Sianvarplaylist <- get_playlist_audio_features('','459ajSShZM6IyPohXIk4DK')
 
 DGDpopq <- DGDplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name, valence)
 RCpopq <- RCplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name, valence)
 Stolaspop_q <- Stolasplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name, valence)
 ALLBpopq <- ALLBplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name, valence)
 SmallSwanpopq <- SmallSwanplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name, valence)
 BTpopq <- BTplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name, valence)
 Sianvarpopq <- Sianvarplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name, valence)

@@ -1,22 +1,93 @@
 ---
-title: "Untitled"
+title: "Beauty that Bites: A Statistical Analysis of Swancore's Push towards Pop"
+author: "Richard Weichert"
+date: "27-02-2023"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
+    theme: journal
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
 ```
+Introduction
+=============
+  This portfolio comprises of statistical investigations into the genre of **Swancore**, a musical hybrid influenced by post-hardcore, mathcore, funk & RnB and, as of late, mainstream pop. I will address 2 questions in this portfolio: the first pertaining to **how the push towards a poppier sound influences the music's reception**, and the second assessing **how this poppier sound informs/is informed by the music's other qualities (such as Key, Mode, Valence, Danceability)**. Having done extensive reading, listening and writing on topics in the fields of musicology, ethnomusicology and acoustic ecology, and being particularily invested in the growth of the Swancore scene, I would like, with this investigation, to combine my interests on a new, statistical frontier.
+
+  In this investigation, artists of interest will include bands **Dance Gavin Dance (DGD)**, **Royal Coda (RC)**, **A Lot Like Birds (ALLB)**, **Stolas**, and **Body Thief (BT)**. 
+  DGD's long lifespan and reputation for having founded the genre places it front and centre in this investigation - in many regards, the **changes in sound which this band experienced largely define the Swancore genre today**, and as such I expect their changes in musical qualities will be reflected by other bands. However, as DGD ages, RC and other new additions to the roster of Swancore artists have **deviated from the "core" Swancore sound**, and in turn these deviations become a better representation of the genre as a whole. 
+    BT and Stolas should serve as an interesting parallel to one another, having been formed at approximately the same time with a **distinctly similar sound, even within Swancore**, and each having released **three albums** (the third of each respectively delving further into pop than anything these bands had released before). But, while Stolas separated in 2018, BT continues to remain together to the present day. I hope that this parallel can help **identify how much popularity relies on recentness**.
+    As a Swancore-adjacent post-hardcore band whose discography stretches actross a far wider range of influences than DGD or any of the other bands in this corpus, I want to identify **if ALLB's popularity is correlated with its proximity of to Swancore/Poppier influences**.
+
+  In working with some of the larger names and pioneers of Swancore, my corpus should serve as a solid overview. However, smaller bands and their more recent contributions to the genre who will not be taken into consideration, which means that *some more recent trends may be overlooked*. Similarily, the newer bands which are being considered may not have enough data to depict trends in sound, or will have so little popularity that it is impossible to tell if musical choices are indicative of what the future may bring (i.e. their relevancy). 
+
+  Tracks of interest (particularily when comparing a presence/lack of pop, funk and RnB influences and their impact on listening statistics) will be *Feels Bad Man* and *Son of Robot* (DGD), *Connector* and *Vanity's Fair* (ALLB), *Becoming the Memory* and *Even If* (RC) and *Bellweather* and *Time & the Sun* (Stolas).
+  This being said, click, scroll, read and listen on, and enjoy!
+
+Playlist Links: 
+Dance Gavin Dance: https://open.spotify.com/playlist/7f9Om6iCmRTzdKRBPD5pcs
+Royal Coda: https://open.spotify.com/playlist/4WJ7zh98auBw4xHlFelQ5F
+Stolas: https://open.spotify.com/playlist/75FxeNrnraO5TtfVeSAXWd
+A Lot Like Birds: https://open.spotify.com/playlist/4P2pMy8FAhTRE61Sd10obo
+Body Thief: https://open.spotify.com/playlist/4gsZoA8LJMhQSiHU0ssakc
+Sianvar: https://open.spotify.com/playlist/459ajSShZM6IyPohXIk4DK
+Smaller Artists: https://open.spotify.com/playlist/7muOOsQ7QSYY0e3hqZmX3C
+
+``` {r, echo = FALSE}
+library(tidyverse)
+library(spotifyr)
+library(lubridate)
+
+DGDplaylist <- get_playlist_audio_features('','7f9Om6iCmRTzdKRBPD5pcs')
+RCplaylist <- get_playlist_audio_features('','4WJ7zh98auBw4xHlFelQ5F')
+Stolasplaylist <- get_playlist_audio_features('','75FxeNrnraO5TtfVeSAXWd')
+ALLBplaylist <- get_playlist_audio_features('','4P2pMy8FAhTRE61Sd10obo')
+SmallSwanplaylist <- get_playlist_audio_features('','7muOOsQ7QSYY0e3hqZmX3C')
+BTplaylist <- get_playlist_audio_features('','4gsZoA8LJMhQSiHU0ssakc')
+Sianvarplaylist <- get_playlist_audio_features('','459ajSShZM6IyPohXIk4DK')
+
+DGDpopq <- DGDplaylist |>
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+RCpopq <- RCplaylist |>
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+Stolaspop_q <- Stolasplaylist |>
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+ALLBpopq <- ALLBplaylist |>
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+SmallSwanpopq <- SmallSwanplaylist |>
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+BTpopq <- BTplaylist |>
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+Sianvarpopq <- Sianvarplaylist |>
+  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+```
+Exploration: Question 1 - Popularity vs Poppiness
+==============
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Dance Gavin Dance
 
-```{r}
+```{r, fig.width= 14, fig.height= 8}
+plotDGDpop <- ggplot(DGDpopq, aes(x = year(track.album.release_date), y = danceability))
 
+plotDGDpop + geom_point(aes(size = track.popularity, 
+                            fill = mode_name, 
+                            colour = track.album.name), 
+                          shape = 23, stroke = 2, alpha = 0.5) + 
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9)) + 
+  guides(alpha = "none") + 
+  labs(title = "Comparing Danceability and Popularity by Release Date - Dance Gavin Dance", 
+       caption = "Source: Spotify", 
+       x = "Release Date", 
+       y = "Danceability", 
+       size = "Popularity", 
+       fill = "Mode",
+       colour = "Album")
 ```
 
 Column {data-width=350}
