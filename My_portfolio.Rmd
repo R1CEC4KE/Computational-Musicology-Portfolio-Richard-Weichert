@@ -33,19 +33,19 @@ Introduction
 
 Playlist Links: 
 
-Dance Gavin Dance: <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7f9Om6iCmRTzdKRBPD5pcs?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+Dance Gavin Dance: https://open.spotify.com/playlist/7f9Om6iCmRTzdKRBPD5pcs?si=fa1fd346853b4a87
 
-Royal Coda: <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4WJ7zh98auBw4xHlFelQ5F?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+Royal Coda: https://open.spotify.com/playlist/4WJ7zh98auBw4xHlFelQ5F?si=1d21efcb047c4e74
 
-Stolas: <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/75FxeNrnraO5TtfVeSAXWd?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+Stolas: https://open.spotify.com/playlist/75FxeNrnraO5TtfVeSAXWd?si=1064323bd0434212
 
-A Lot Like Birds: <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4P2pMy8FAhTRE61Sd10obo?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+A Lot Like Birds: https://open.spotify.com/playlist/4P2pMy8FAhTRE61Sd10obo?si=f92aa53066a04952
 
-Body Thief: <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4gsZoA8LJMhQSiHU0ssakc?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+Body Thief: https://open.spotify.com/playlist/4gsZoA8LJMhQSiHU0ssakc?si=a24712e8a5194a01
 
-Sianvar: <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/459ajSShZM6IyPohXIk4DK?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+Sianvar: https://open.spotify.com/playlist/459ajSShZM6IyPohXIk4DK?si=194267ef38cb45c1
 
-Smaller Artists: <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7muOOsQ7QSYY0e3hqZmX3C?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+Smaller Artists: https://open.spotify.com/playlist/7muOOsQ7QSYY0e3hqZmX3C?si=a043e3e66258481e
 
 ``` {r, echo = FALSE}
 library(tidyverse)
