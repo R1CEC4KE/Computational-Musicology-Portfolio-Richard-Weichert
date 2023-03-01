@@ -51,6 +51,7 @@ Smaller Artists: https://open.spotify.com/playlist/7muOOsQ7QSYY0e3hqZmX3C?si=a04
 library(tidyverse)
 library(spotifyr)
 library(lubridate)
+library(plotly)
 
 DGDplaylist <- get_playlist_audio_features('','7f9Om6iCmRTzdKRBPD5pcs')
 RCplaylist <- get_playlist_audio_features('','4WJ7zh98auBw4xHlFelQ5F')
@@ -100,6 +101,7 @@ plotDGDpop + geom_point(aes(size = track.popularity,
        size = "Popularity", 
        fill = "Mode",
        colour = "Album")
+  ggplotly()
 ```
 
 Column {data-width=350}
