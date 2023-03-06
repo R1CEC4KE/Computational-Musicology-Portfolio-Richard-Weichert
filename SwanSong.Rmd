@@ -6,7 +6,7 @@ output:
   flexdashboard::flex_dashboard:
     storyboard: true
     orientation: columns
-    vertical_layout: scroll
+    vertical_layout: fill
     theme: journal
     
 ---
@@ -16,6 +16,7 @@ library(flexdashboard)
 library(spotifyr)
 library(tidyverse)
 library(lubridate)
+library(compmus)
 library(plotly)
 ```
 Introduction
@@ -87,9 +88,18 @@ The Danceability and Popularity of Swancore Over Time
 ===========
 Column {data-width=750}
 -----------------------------------------------------------------------
-### Dance Gavin Dance
+### Summary 
 
 ```{r}
+
+```
+
+Column {data-height=250}
+-----------------------------------------------------------------------
+
+### Dance Gavin Dance
+
+```{r, fig.width=14, fig.height=8}
 plotDGDpop <- ggplot(DGDpopq, aes(x = year(track.album.release_date), y = danceability))
 
 plotDGDpop + geom_point(aes(size = track.popularity, 
@@ -108,17 +118,82 @@ plotDGDpop + geom_point(aes(size = track.popularity,
        colour = "Album")
 ```
 
-Column {data-height=250}
------------------------------------------------------------------------
-
-### Chart B
+### Chart C
 
 ```{r}
 
 ```
 
-### Chart C
+Chromagrams and Cepstograms
+============
 
-```{r}
+Column {data-width=330}
+----------
+### Chromagram
+``` {r DGDcromagram, echo = FALSE}
+Summertime <-
+get_tidy_audio_analysis("639JHsrGV8A9qUYSXhOwsw") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
 
+Summertime |>
+  mutate(pitches = map(pitches, compmus_normalise, "euclidean")) |>
+  compmus_gather_chroma() |> 
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = pitch_class,
+      fill = value
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Pitch Analysis of Summertime Gladness (Dance Gavin Dance, 2017)") +
+  theme_minimal() +
+  scale_fill_viridis_c()
+```
+
+Column {data-width=340}
+---------
+This page hosts two graphical representations of [Summertime Gladness](https://open.spotify.com/track/639JHsrGV8A9qUYSXhOwsw), one of Dance Gavin Dance's most popular singles, and their most danceable according to Spotify's API. [analysis pending]
+
+Column {data-width=330}
+--------
+### Cepstogram
+``` {r DGDcepstogram, echo = FALSE}
+Summertimetimbre <-
+get_tidy_audio_analysis("639JHsrGV8A9qUYSXhOwsw") |> 
+  compmus_align(beats, segments) |>                     
+  select(beats) |>                                      
+  unnest(beats) |>                                      
+  mutate(
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "rms", norm = "euclidean"              
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+          compmus_summarise, timbre,
+          method = "rms", norm = "euclidean"              
+      )
+  )
+
+Summertimetimbre |>
+  compmus_gather_timbre() |>
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = basis,
+      fill = value
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Timbre Analysis of Summertime Gladness (Dance Gavin Dance, 2017)") +
+  scale_fill_viridis_c() +                              
+  theme_classic()
 ```
