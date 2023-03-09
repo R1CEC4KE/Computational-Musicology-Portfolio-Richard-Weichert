@@ -70,36 +70,33 @@ Sianvarplaylist <- get_playlist_audio_features('','459ajSShZM6IyPohXIk4DK')
 
 DGDpopq <- DGDplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+
 RCpopq <- RCplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+
 Stolaspop_q <- Stolasplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+
 ALLBpopq <- ALLBplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+
 SmallSwanpopq <- SmallSwanplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+
 BTpopq <- BTplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+
 Sianvarpopq <- Sianvarplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
 ```
 
-The Danceability and Popularity of Swancore Over Time
-===========
+Dance Gavin Dance {data-navmenu=Discographies}
+===================
 Column {data-width=750}
 -----------------------------------------------------------------------
-### Summary 
+### Dance Gavin Dance 
 
-```{r}
-
-```
-
-Column {data-height=250}
------------------------------------------------------------------------
-
-### Dance Gavin Dance
-
-```{r, fig.width=14, fig.height=8}
+```{r DGDdiscog, fig.width=14, fig.height=8}
 plotDGDpop <- ggplot(DGDpopq, aes(x = year(track.album.release_date), y = danceability))
 
 plotDGDpop + geom_point(aes(size = track.popularity, 
@@ -118,13 +115,121 @@ plotDGDpop + geom_point(aes(size = track.popularity,
        colour = "Album")
 ```
 
-### Chart C
+Column {data-height=250}
+-----------------------------------------------------------------------
 
-```{r}
+### Analysis
 
+Royal Coda {data-navmenu=Discographies}
+===================
+Column {data-width=750}
+---------
+### Royal Coda
+```{r RCdiscog, fig.width=14, fig.height=8}
+plotRCpop <- ggplot(RCpopq, aes(x = year(track.album.release_date), y = danceability))
+
+plotRCpop + geom_point(aes(size = track.popularity, 
+                            fill = mode_name, 
+                            colour = track.album.name), 
+                          shape = 23, stroke = 2, alpha = 0.5) + 
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9)) + 
+  guides(alpha = "none") + 
+  labs(title = "Comparing Danceability and Popularity by Release Date - Royal Coda", 
+       caption = "Source: Spotify", 
+       x = "Release Date", 
+       y = "Danceability", 
+       size = "Popularity", 
+       fill = "Mode",
+       colour = "Album")
 ```
+Column {data=width=250}
+----------
+Column {data-width=250}
+### Analysis
 
-Chromagrams and Cepstograms
+
+Stolas {data-navmenu=Discographies}
+===================
+Column {data-width=750}
+-----------
+### Stolas
+```{r Stolasdiscog, fig.width=14, fig.height=8}
+plotStolaspop <- ggplot(Stolaspop_q, aes(x = year(track.album.release_date), y = danceability))
+
+plotStolaspop + geom_point(aes(size = track.popularity, 
+                            fill = mode_name, 
+                            colour = track.album.name), 
+                          shape = 23, stroke = 2, alpha = 0.5) + 
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9)) + 
+  guides(alpha = "none") + 
+  labs(title = "Comparing Danceability and Popularity by Release Date - Stolas", 
+       caption = "Source: Spotify", 
+       x = "Release Date", 
+       y = "Danceability", 
+       size = "Popularity", 
+       fill = "Mode",
+       colour = "Album")
+```
+Column {data-width=250}
+------------------------
+### Analysis
+
+Body Thief {data-navmenu=Discographies}
+===================
+Column {data-width=750}
+----------
+### Body Thief
+```{r BTdiscog, fig.width=14, fig.height=8}
+plotBTpop <- ggplot(BTpopq, aes(x = year(track.album.release_date), y = danceability))
+
+plotBTpop + geom_point(aes(size = track.popularity, 
+                            fill = mode_name, 
+                            colour = track.album.name), 
+                          shape = 23, stroke = 2, alpha = 0.5) + 
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9)) + 
+  guides(alpha = "none") + 
+  labs(title = "Comparing Danceability and Popularity by Release Date - Body Thief", 
+       caption = "Source: Spotify", 
+       x = "Release Date", 
+       y = "Danceability", 
+       size = "Popularity", 
+       fill = "Mode",
+       colour = "Album")
+```
+Column {data-width=250}
+--------------
+### Analysis
+
+Sianvar {data-navmenu=Discographies}
+===================
+Column {data-width=750}
+--------
+### Sianvar
+```{r Sianvardiscog, fig.width=14, fig.height=8}
+plotSianvarpop <- ggplot(Sianvarpopq, aes(x = year(track.album.release_date), y = danceability))
+
+plotSianvarpop + geom_point(aes(size = track.popularity, 
+                            fill = mode_name, 
+                            colour = track.album.name), 
+                          shape = 23, stroke = 2, alpha = 0.5) + 
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9)) + 
+  guides(alpha = "none") + 
+  labs(title = "Comparing Danceability and Popularity by Release Date - Sianvar", 
+       caption = "Source: Spotify", 
+       x = "Release Date", 
+       y = "Danceability", 
+       size = "Popularity", 
+       fill = "Mode",
+       colour = "Album")
+```
+Column {data-width=250}
+-------------
+### Analysis
+Dance Gavin Dance: Summertime Gladness {data-navmenu=Chromagrams/Cepstograms}
 ============
 
 Column {data-width=330}
@@ -197,3 +302,75 @@ Summertimetimbre |>
   scale_fill_viridis_c() +                              
   theme_classic()
 ```
+
+The Push to Pop: A Timbre Analysis
+===============
+
+Column {data-width=800}
+----------------------------
+``` {r, echo=FALSE}
+swancore <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "2NAM4VUbbZi2t1y3TfJsvH"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+pphc <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "4tzo97AF7cGmRpYnnMosHP"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+funkrock <- 
+  get_playlist_audio_features(
+    "", "2v7uYvX2h5hNSukaqp9LCb"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+kpop <-
+  get_playlist_audio_features(
+    "", "3T1Rft817cZ3pguTvaWaz3"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+pop <-
+  get_playlist_audio_features(
+    "", "6gS3HhOiI17QNojjPuPzqc"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+
+postcore <-
+  swancore |>
+  mutate(genre = "Swancore") |>
+  bind_rows(pphc |> mutate(genre = "Progressive Post Hardcore")) |>
+  bind_rows(funkrock |> mutate(genre = "Funk Rock")) |>
+  bind_rows(kpop |> mutate(genre = "K-Pop")) |>
+  bind_rows(pop |> mutate(genre = "Pop")) |>
+  mutate(genre = fct_relevel(genre, c("Progressive Post Hardcore", "Swancore", "Funk Rock", "K-Pop", "Pop")))
+
+postcore |>
+  mutate(
+    timbre =
+      map(
+        segments,
+        compmus_summarise,
+        timbre,
+        method = "mean"
+      )
+  ) |>
+  select(genre, timbre) |>
+  compmus_gather_timbre() |>
+  ggplot(aes(x = basis, y = value, fill = genre)) +
+  geom_violin() +
+  scale_fill_viridis_d() +
+  labs(x = "Spotify Timbre Coefficients", y = "", fill = "Genre")
+```
+
+Column {data-width=200}
+--------------
+
+### Analysis
+
