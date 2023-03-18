@@ -1,14 +1,14 @@
 ---
 title: "A Bird Filing its Beak: Investigating Swancore's Push Towards Pop"
 author: "Richard Weichert"
-date: "05-03-2023"
+date: "18-03-2023"
 output: 
   flexdashboard::flex_dashboard:
-    storyboard: true
-    orientation: columns
-    vertical_layout: fill
-    theme: journal
-    
+  storyboard: true
+orientation: columns
+vertical_layout: fill
+theme: journal
+
 ---
 
 ```{r setup, include=FALSE}
@@ -19,24 +19,30 @@ library(lubridate)
 library(compmus)
 library(plotly)
 ```
+
 Introduction
 =================
 Column {data-width=800}
--------
-This portfolio comprises of statistical investigations into the genre of **Swancore**, a musical hybrid influenced by post-hardcore, mathcore, funk & RnB and, as of late, mainstream pop. I will address 2 questions in this portfolio: the first pertaining to **how the push towards a poppier sound influences the music's reception**, and the second assessing **how this poppier sound informs/is informed by the music's other qualities (such as Key, Mode, Valence, Danceability)**. Having done extensive reading, listening and writing on topics in the fields of musicology, ethnomusicology and acoustic ecology, and being particularily invested in the growth of the Swancore scene, I would like, with this investigation, to combine my interests on a new, statistical frontier.
-
-  In this investigation, artists of interest will include bands **Dance Gavin Dance (DGD)**, **Royal Coda (RC)**, **A Lot Like Birds (ALLB)**, **Stolas**, and **Body Thief (BT)**. 
- 
-  DGD's long lifespan and reputation for having founded the genre places it front and centre in this investigation - in many regards, the **changes in sound which this band experienced largely define the Swancore genre today**, and as such I expect their changes in musical qualities will be reflected by other bands. However, as DGD ages, RC and other new additions to the roster of Swancore artists have **deviated from the "core" Swancore sound**, and in turn these deviations become a better representation of the genre as a whole. 
+------------
+  This portfolio comprises of a statistical investigation into the genre of **Swancore**, a _"musical hybrid"_ influenced by **progressive post-hardcore, mathcore & Japanese rock, funk & RnB and as of late, mainstream pop**. Having done extensive reading, listening and writing in the fields of musicology, ethnomusicology and acoustic ecology, and being particularly invested in the growth of and changes within the Swancore scene, I would like, with this investigation, to combine my interests on a new, statistical frontier. This portfolio is for a course in Computational Musicology at the Universiteit van Amsterdam.
   
-  BT and Stolas should serve as an interesting parallel to one another, having been formed at approximately the same time with a **distinctly similar sound, even within Swancore**, and each having released **three albums** (the third of each respectively delving further into pop than anything these bands had released before). But, while Stolas separated in 2018, BT continues to remain together to the present day. I hope that this parallel can help **identify how much popularity relies on recentness**.
+  Using data collected by the **Spotify API** I will address 2 points of interest: 
+  1. **How the push towards a poppier sound influences the music's reception** 
+  2. **How this poppier sound informs/is informed by the music's other qualities (such as Key, Mode, Valence, and Danceability)**. 
+
+  This investigation centres around 6 major Swancore artists; **Dance Gavin Dance (DGD)**, **A Lot Like Birds (ALLB)**, **Royal Coda (RC)**, **Stolas**, **Body Thief (BT)** and **Sianvar**. This corpus will also include a variety of smaller artists to show how these central figures have influenced more general trends across the genre as a whole.
+
+  DGD's long lifespan and reputation for having founded the genre places it front and centre in this investigation - in many regards, the **changes in sound which this band experienced largely define adn inspire the Swancore genre today**, and as such I expect their changes in musical qualities will be reflected by other bands. However, as DGD ages and becomes "old news", RC and other newer additions to the roster of Swancore artists have **deviated from the "core" Swancore sound**, and in turn these deviations are a better representation of the genre in its current state. Additionally, the contributions to the genre by smaller bands, while inspired by the sounds which came before them, will likely implicate the direction in which the genre is headed in the future.
+  
+  BT and Stolas **should present an interesting parallel**, having been formed within a few years of one another and initially possessing a **distinctly similar sound, even within Swancore**, and having released three albums each, the third of each respectively delving further into mainstream sounds than either band had done before (jazz and funk in Stolas' case, Western pop in BT's). But, while Stolas separated in 2018, BT continues to remain together to the present day. I hope that this parallel can help **identify how much popularity relies on recency**. Here too, the data on smaller bands should serve as an indicator of exactly how correlated popularity and danceability are.
     
-  As a Swancore-adjacent post-hardcore band whose discography stretches actross a far wider range of influences than DGD or any of the other bands in this corpus, I want to identify **if ALLB's popularity is correlated with its proximity of to Swancore/Poppier influences**.
+  As a Swancore-adjacent **progressive post-hardcore band**, whose discography stretches across a far wider range of influences than DGD or any of the other bands in this corpus, I want to identify **if ALLB's popularity is correlated with its proximity of to Swancore/Poppier influences**. Similarily, I would like to take time to identify where Swancore as a genre lies, between its progressive post hardcore roots and pop-funk influences.
 
-  In working with some of the larger names and pioneers of Swancore, my corpus should serve as a solid overview. However, smaller bands and their more recent contributions to the genre who will not be taken into consideration, which means that *some more recent trends may be overlooked*. Similarily, the newer bands which are being considered may not have enough data to depict trends in sound, or will have so little popularity that it is impossible to tell if musical choices are indicative of what the future may bring (i.e. their relevancy). 
+  One of the primary issues with assessing such a niche and complex genre is how data about it is gathered and catagorised. As the Spotify API runs on relationality (placing all data points in relation to one another), a genre still so linked with the less accessible (both musically and socially) post-hardcore scene will not have as large a range of popularity, danceability, and other subjective characteristics. As such, this portfolio only seeks to identify qualitative trends and will not speak to any quantitative differences/changes. 
 
-  Tracks of interest (particularily when comparing a presence/lack of pop, funk and RnB influences and their impact on listening statistics) will be *Feels Bad Man* and *Son of Robot* (DGD), *Connector* and *Vanity's Fair* (ALLB), *Becoming the Memory* and *Even If* (RC) and *Bellweather* and *Time & the Sun* (Stolas).
-  This being said, click, scroll, read and listen on, and enjoy!
+  Tracks of interest in this corpus will be DGD's [*Summertime Gladness*](https://open.spotify.com/track/639JHsrGV8A9qUYSXhOwsw), ALLB's [*Vanity's Fair*](https://open.spotify.com/track/6JKi3iWIe2KBcF13UCAjLC), RC's [*Even If*](https://open.spotify.com/track/3Z0epjTa2wAJ7GdjoE5110), BT's [*Night Owls in Mating Season*](https://open.spotify.com/track/24BSQdul6wKDh7G5nqZMuK), Stolas' [*Bellweather*](https://open.spotify.com/track/3qZrFs34d49XkmWuNiZQbQ), Sianvar's [*Your Tongue Ties*](https://open.spotify.com/track/50wQbV2FVfB79h7rZanGVZ) and from smaller artists, Properties of Nature's [*Mind Goblin*](https://open.spotify.com/album/4M042SxuMea3c8JaZzeI0v) and Cat Company's [*Sad Dance*](https://open.spotify.com/track/6hz1XiOAeLckjoKyikOkSd).
+  
+  This little introduction aside, I hope you click, scroll, read and listen on, and that you enjoy the output of these past few weeks!
 
 Column {data-width=10}
 ------------
@@ -45,28 +51,28 @@ Column {data-width=190}
 ------------
 ### Playlist Links
  
- [Dance Gavin Dance](https://open.spotify.com/playlist/7f9Om6iCmRTzdKRBPD5pcs?si=6036a8c94e6f4a8f)
+ * [Dance Gavin Dance](https://open.spotify.com/playlist/7f9Om6iCmRTzdKRBPD5pcs?si=6036a8c94e6f4a8f)
  
- [Royal Coda](https://open.spotify.com/playlist/4WJ7zh98auBw4xHlFelQ5F?si=ce9e3690534e4d03)
+ * [Royal Coda](https://open.spotify.com/playlist/4WJ7zh98auBw4xHlFelQ5F?si=ce9e3690534e4d03)
  
- [Stolas](https://open.spotify.com/playlist/75FxeNrnraO5TtfVeSAXWd?si=93495ca4607a4c1b)
+ * [Stolas](https://open.spotify.com/playlist/75FxeNrnraO5TtfVeSAXWd?si=93495ca4607a4c1b)
  
- [A Lot Like Birds](https://open.spotify.com/playlist/4P2pMy8FAhTRE61Sd10obo?si=7f3f384fa7d34850)
+ * [A Lot Like Birds](https://open.spotify.com/playlist/4P2pMy8FAhTRE61Sd10obo?si=7f3f384fa7d34850)
  
- [Body Thief](https://open.spotify.com/playlist/4gsZoA8LJMhQSiHU0ssakc?si=35d16047041b435a)
+ * [Body Thief](https://open.spotify.com/playlist/4gsZoA8LJMhQSiHU0ssakc?si=35d16047041b435a)
  
- [Sianvar](https://open.spotify.com/playlist/459ajSShZM6IyPohXIk4DK?si=0f97e5779f424c2f)
+ * [Sianvar](https://open.spotify.com/playlist/459ajSShZM6IyPohXIk4DK?si=0f97e5779f424c2f)
  
- [Smaller Artists](https://open.spotify.com/playlist/7muOOsQ7QSYY0e3hqZmX3C?si=69bba0256087480b)
+ * [Smaller Artists](https://open.spotify.com/playlist/7muOOsQ7QSYY0e3hqZmX3C?si=69bba0256087480b)
  
 ``` {r spotify playlists setup, echo = FALSE}
-DGDplaylist <- get_playlist_audio_features('','7f9Om6iCmRTzdKRBPD5pcs')
-RCplaylist <- get_playlist_audio_features('','4WJ7zh98auBw4xHlFelQ5F')
-Stolasplaylist <- get_playlist_audio_features('','75FxeNrnraO5TtfVeSAXWd')
-ALLBplaylist <- get_playlist_audio_features('','4P2pMy8FAhTRE61Sd10obo')
-SmallSwanplaylist <- get_playlist_audio_features('','7muOOsQ7QSYY0e3hqZmX3C')
-BTplaylist <- get_playlist_audio_features('','4gsZoA8LJMhQSiHU0ssakc')
-Sianvarplaylist <- get_playlist_audio_features('','459ajSShZM6IyPohXIk4DK')
+DGDplaylist <- get_playlist_audio_features('', '7f9Om6iCmRTzdKRBPD5pcs')
+RCplaylist <- get_playlist_audio_features('', '4WJ7zh98auBw4xHlFelQ5F')
+Stolasplaylist <- get_playlist_audio_features('', '75FxeNrnraO5TtfVeSAXWd')
+ALLBplaylist <- get_playlist_audio_features('', '4P2pMy8FAhTRE61Sd10obo')
+SmallSwanplaylist <- get_playlist_audio_features('', '7muOOsQ7QSYY0e3hqZmX3C')
+BTplaylist <- get_playlist_audio_features('', '4gsZoA8LJMhQSiHU0ssakc')
+Sianvarplaylist <- get_playlist_audio_features('', '459ajSShZM6IyPohXIk4DK')
 
 DGDpopq <- DGDplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
@@ -78,7 +84,11 @@ Stolaspop_q <- Stolasplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
 
 ALLBpopq <- ALLBplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(track.name, track.album.name, track.artists, track.album.release_date =
+      map_int(
+        track.album.release_date,
+        \(x) as.integer(str_sub(x, start = 1, end = 4))
+      ), track.popularity, danceability, key_name, mode_name)
 
 SmallSwanpopq <- SmallSwanplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
@@ -88,14 +98,47 @@ BTpopq <- BTplaylist |>
 
 Sianvarpopq <- Sianvarplaylist |>
   summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+
+swancore <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "2NAM4VUbbZi2t1y3TfJsvH"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+pphc <-
+  get_playlist_audio_features(
+    "thesoundsofspotify",
+    "4tzo97AF7cGmRpYnnMosHP"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+funkrock <- 
+  get_playlist_audio_features(
+    "", "2v7uYvX2h5hNSukaqp9LCb"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+kpop <-
+  get_playlist_audio_features(
+    "", "3T1Rft817cZ3pguTvaWaz3"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+pop <-
+  get_playlist_audio_features(
+    "", "6gS3HhOiI17QNojjPuPzqc"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
 ```
 
 Dance Gavin Dance {data-navmenu=Discographies}
-===================
-Column {data-width=750}
------------------------------------------------------------------------
-### Dance Gavin Dance 
+=================
 
+Column {data-width=800}
+--------------------------------
+### Dance Gavin Dance 
 ```{r DGDdiscog, fig.width=14, fig.height=8}
 plotDGDpop <- ggplot(DGDpopq, aes(x = year(track.album.release_date), y = danceability))
 
@@ -103,6 +146,7 @@ plotDGDpop + geom_point(aes(size = track.popularity,
                             fill = mode_name, 
                             colour = track.album.name), 
                           shape = 23, stroke = 2, alpha = 0.5) + 
+  geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) + 
   guides(alpha = "none") + 
@@ -115,15 +159,48 @@ plotDGDpop + geom_point(aes(size = track.popularity,
        colour = "Album")
 ```
 
-Column {data-height=250}
------------------------------------------------------------------------
-
+Column {data-width=200}
+--------------------------------
 ### Analysis
+this is a brief comment
+
+A Lot Like Birds {data-navmenu=Discographies}
+===================
+
+Column {data-width=800}
+-------------------------------------------
+### A Lot Like Birds
+```{r ALLBdiscog, fig.width=14, fig.height=8}
+plotALLBpop <- ggplot(ALLBpopq, aes(x = track.album.release_date, y = danceability))
+
+plotALLBpop + geom_point(aes(size = track.popularity, 
+                            fill = mode_name, 
+                            colour = track.album.name), 
+                          shape = 23, stroke = 2, alpha = 0.5) + 
+  geom_smooth() +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9)) + 
+  guides(alpha = "none") + 
+  labs(title = "Comparing Danceability and Popularity by Release Date - A Lot Like Birds", 
+       caption = "Source: Spotify", 
+       x = "Release Date", 
+       y = "Danceability", 
+       size = "Popularity", 
+       fill = "Mode",
+       colour = "Album")
+
+```
+
+Column {data-width=200}
+-------------------------------------
+### Analysis
+this is a breif analysis
 
 Royal Coda {data-navmenu=Discographies}
 ===================
-Column {data-width=750}
----------
+
+Column {data-width=800}
+-----------------------------------------------------------------------
 ### Royal Coda
 ```{r RCdiscog, fig.width=14, fig.height=8}
 plotRCpop <- ggplot(RCpopq, aes(x = year(track.album.release_date), y = danceability))
@@ -132,6 +209,7 @@ plotRCpop + geom_point(aes(size = track.popularity,
                             fill = mode_name, 
                             colour = track.album.name), 
                           shape = 23, stroke = 2, alpha = 0.5) + 
+  geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) + 
   guides(alpha = "none") + 
@@ -143,16 +221,17 @@ plotRCpop + geom_point(aes(size = track.popularity,
        fill = "Mode",
        colour = "Album")
 ```
-Column {data=width=250}
-----------
-Column {data-width=250}
-### Analysis
 
+Column {data-width=200}
+-------------------------------------------
+### Analysis
+this is a brief comment
 
 Stolas {data-navmenu=Discographies}
 ===================
-Column {data-width=750}
------------
+
+Column {data-width=800}
+-----------------------
 ### Stolas
 ```{r Stolasdiscog, fig.width=14, fig.height=8}
 plotStolaspop <- ggplot(Stolaspop_q, aes(x = year(track.album.release_date), y = danceability))
@@ -161,6 +240,7 @@ plotStolaspop + geom_point(aes(size = track.popularity,
                             fill = mode_name, 
                             colour = track.album.name), 
                           shape = 23, stroke = 2, alpha = 0.5) + 
+  geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) + 
   guides(alpha = "none") + 
@@ -172,14 +252,17 @@ plotStolaspop + geom_point(aes(size = track.popularity,
        fill = "Mode",
        colour = "Album")
 ```
-Column {data-width=250}
+
+Column {data-width=200}
 ------------------------
 ### Analysis
+this is a breif comment
 
 Body Thief {data-navmenu=Discographies}
 ===================
-Column {data-width=750}
-----------
+
+Column {data-width=800}
+------------------------
 ### Body Thief
 ```{r BTdiscog, fig.width=14, fig.height=8}
 plotBTpop <- ggplot(BTpopq, aes(x = year(track.album.release_date), y = danceability))
@@ -188,6 +271,7 @@ plotBTpop + geom_point(aes(size = track.popularity,
                             fill = mode_name, 
                             colour = track.album.name), 
                           shape = 23, stroke = 2, alpha = 0.5) + 
+  geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) + 
   guides(alpha = "none") + 
@@ -199,13 +283,16 @@ plotBTpop + geom_point(aes(size = track.popularity,
        fill = "Mode",
        colour = "Album")
 ```
-Column {data-width=250}
---------------
+
+Column {data-width=200}
+----------------------------
 ### Analysis
+this is a breif comment
 
 Sianvar {data-navmenu=Discographies}
 ===================
-Column {data-width=750}
+
+Column {data-width=800}
 --------
 ### Sianvar
 ```{r Sianvardiscog, fig.width=14, fig.height=8}
@@ -215,6 +302,7 @@ plotSianvarpop + geom_point(aes(size = track.popularity,
                             fill = mode_name, 
                             colour = track.album.name), 
                           shape = 23, stroke = 2, alpha = 0.5) + 
+  geom_smooth(span = 0.8) +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) + 
   guides(alpha = "none") + 
@@ -226,14 +314,51 @@ plotSianvarpop + geom_point(aes(size = track.popularity,
        fill = "Mode",
        colour = "Album")
 ```
-Column {data-width=250}
+
+Column {data-width=200}
 -------------
 ### Analysis
-Dance Gavin Dance: Summertime Gladness {data-navmenu=Chromagrams/Cepstograms}
-============
+this is a breif comment
+
+Smaller Artists {data-navmenu=Discographies}
+=================
+
+Column {data-width=800}
+--------------------------------
+### Smaller Artists 
+```{r SmallSwandiscog, fig.width=14, fig.height=8}
+plotSmallswanpop <- ggplot(SmallSwanpopq, aes(x = year(track.album.release_date), y = danceability))
+
+finalplotSmallSwan <- plotSmallswanpop + geom_point(aes(size = track.popularity, 
+                            fill = mode_name, 
+                            colour = track.album.name), 
+                          shape = 23, stroke = 2, alpha = 0.5) + 
+  geom_smooth() +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9)) + 
+  guides(alpha = "none") + 
+  labs(title = "Comparing Danceability and Popularity by Release Date - Smaller Artists", 
+       caption = "Source: Spotify", 
+       x = "Release Date", 
+       y = "Danceability", 
+       size = "Popularity", 
+       fill = "Mode",
+       colour = "Album")
+
+  ggplotly(finalplotSmallSwan)
+```
+
+Column {data-width=200}
+--------------------------------
+### Analysis
+this is a brief comment
+
+Dance Gavin Dance: Summertime Gladness {data-navmenu="Chromagrams and Cepstograms"}
+=================
 
 Column {data-width=330}
 ----------
+
 ### Chromagram
 ``` {r DGDcromagram, echo = FALSE}
 Summertime <-
@@ -303,45 +428,88 @@ Summertimetimbre |>
   theme_classic()
 ```
 
+A Lot Like Birds: Vanity's Fair {data-navmenu="Chromagrams and Cepstograms"}
+=================
+
+Column {data-width=330}
+----------
+
+### Chromagram
+``` {r ALLBcromagram, echo = FALSE}
+Vfair <-
+get_tidy_audio_analysis("6JKi3iWIe2KBcF13UCAjLC") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+
+Vfair |>
+  mutate(pitches = map(pitches, compmus_normalise, "euclidean")) |>
+  compmus_gather_chroma() |> 
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = pitch_class,
+      fill = value
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Pitch Analysis of Vanity's Fair (A Lot Like Birds, 2013)") +
+  theme_minimal() +
+  scale_fill_viridis_c()
+```
+
+Column {data-width=340}
+---------
+This page hosts two graphical representations of [Vanity's Fair](https://open.spotify.com/track/6JKi3iWIe2KBcF13UCAjLC), one of A Lot Like Birds' most popular, and their most danceable Single release according to Spotify's API. [analysis pending]
+
+Column {data-width=330}
+--------
+### Cepstogram
+``` {r ALLBcepstogram, echo = FALSE}
+Vfairtimbre <-
+get_tidy_audio_analysis("6JKi3iWIe2KBcF13UCAjLC") |> 
+  compmus_align(beats, segments) |>                     
+  select(beats) |>                                      
+  unnest(beats) |>                                      
+  mutate(
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "rms", norm = "euclidean"              
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+          compmus_summarise, timbre,
+          method = "rms", norm = "euclidean"              
+      )
+  )
+
+Vfairtimbre |>
+  compmus_gather_timbre() |>
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = basis,
+      fill = value
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Timbre Analysis of Vanity's Fair (A Lot like Birds, 2013)") +
+  scale_fill_viridis_c() +                              
+  theme_classic()
+```
+
 The Push to Pop: A Timbre Analysis
-===============
+=================
 
 Column {data-width=800}
 ----------------------------
-``` {r, echo=FALSE}
-swancore <-
-  get_playlist_audio_features(
-    "thesoundsofspotify",
-    "2NAM4VUbbZi2t1y3TfJsvH"
-  ) |>
-  slice(1:30) |>
-  add_audio_analysis()
-pphc <-
-  get_playlist_audio_features(
-    "thesoundsofspotify",
-    "4tzo97AF7cGmRpYnnMosHP"
-  ) |>
-  slice(1:30) |>
-  add_audio_analysis()
-funkrock <- 
-  get_playlist_audio_features(
-    "", "2v7uYvX2h5hNSukaqp9LCb"
-  ) |>
-  slice(1:30) |>
-  add_audio_analysis()
-kpop <-
-  get_playlist_audio_features(
-    "", "3T1Rft817cZ3pguTvaWaz3"
-  ) |>
-  slice(1:30) |>
-  add_audio_analysis()
-pop <-
-  get_playlist_audio_features(
-    "", "6gS3HhOiI17QNojjPuPzqc"
-  ) |>
-  slice(1:30) |>
-  add_audio_analysis()
 
+``` {r, echo=FALSE, fig.height=8 , fig.width=14}
 postcore <-
   swancore |>
   mutate(genre = "Swancore") |>
@@ -373,4 +541,4 @@ Column {data-width=200}
 --------------
 
 ### Analysis
-
+this is another breif comment
