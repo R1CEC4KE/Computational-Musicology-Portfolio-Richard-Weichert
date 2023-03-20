@@ -19,39 +19,11 @@ library(compmus)
 library(plotly)
 ```
 
-Tempogram: A Lot Like Birds' Recluse
-=================
-Column {data-width=800}
--------------------
-### Recluse (A Lot Like Birds, 2013)
-```{r TempogramALLB, echo=FALSE}
-recluse <- get_tidy_audio_analysis("1suT9SeCCHCaIwZtBQky1n")
-
-recluse |>
-  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) |>
-  ggplot(aes(x = time, y = bpm, fill = power)) +
-  geom_raster() +
-  scale_fill_viridis_c(guide = "none") +
-  labs(x = "Time (s)", y = "Tempo (BPM)") +
-  theme_classic()
-```
-
-Column {data-width=200}
--------------------
-### Analysis
-As discussed in the section on A Lot Like Birds's discography, the chaotic and "batty" (per Joe Arrington) **Recluse** from the album **No Place** is the band's least danceable song. This tempogram, a visual representation of the changes in tempo across the song's duration, should help gauge the accuracy of my earlier hypothesis regarding how Spotify's API conducts its measurement of a given track's danceability. 
-
-Represented by lines of concentrated yellow, **Recluse's** tempo is shown to modulate quite dramatically at many parts of the track, with intense and fast-paced sections followed by much slower and drawn-out ones. Additionally, there are points in the track where the analysis is not very distinct or readable (such as between approx. 60 and 100 seconds into the track, where there are hardly any horizontal, "even" tempos represented by yellow lines, but rather an array of vertially oriented yellow dots projected seemingly at random). This inaccuracy is likely due to the difficult polyrhythmic drum patterns on which the piece is based, which I discussed in the earlier section (as a review, Arrington plays a 4/4 kick drum underneath a 6/8 snare pattern, each part of which guides a different section of the other instruments - Bass and the band's screamer follow the kick drum, while the guitars and clean vocalist follow the snare). Another possibility is the software confusing the heavy distortion throughout the song for percussive presence, which would confuse the tempo of the piece. 
-
-This would explain why, between approx. 125 and 135 seconds, where there is a reduction in the thickness of the song's sound (guitars, bass and clean vocalist pull back, allowing drums and harsh vocals a much clearer presence), the graph is at its clearest, depicting a slight accelerando, or increase in speed around 250bmp, along with some less distinct but still visible tempo harmonics at 400 and 500bmp, respectively.
-
-In the end, it is likely that this song's structural complexity, in conjunction with strong variation througout the piece and an imprecise analysis by the Spotify API, are what contribute foremost to its low danceability. Expanding from this, it would explain why a good number of songs from ALLB's (and other Swancore bands') discographies are considered to have a low danceability despite having a discernably poppier timbre and influence: their structural complexity and variation impede upon their percieved ability to make someone dance. You can have an incredibly funky riff (such as in **Vanity's Fair** from **ALLB's Conversation Piece**), but it on its own won't make the piece more danceable if it's surrounded by grittier, inconsistent segments.
-
 Introduction
 =================
 Column {data-width=290}
 ------------
-![*Me and a friend with Dance Gavin Dance's screamer, Jon Mess* (Melkweg Amsterdam, 17-03-2023)](Me, Oana, and Jon Mess.jpg){width=400}
+![*Me and my girlfriend with Dance Gavin Dance's screamer, Jon Mess* (Melkweg Amsterdam, 17-03-2023)](Me, Oana, and Jon Mess.jpg){width=400}
 
 Column {data-width=10}
 ------------
@@ -61,7 +33,9 @@ Column {data-width=500}
   This portfolio comprises of a statistical investigation into the genre of **Swancore**, a _"musical hybrid"_ influenced by **progressive post-hardcore, mathcore & Japanese rock, funk & RnB and as of late, mainstream pop**. Having done extensive reading, listening and writing in the fields of musicology, ethnomusicology and acoustic ecology, and being particularly invested in the growth of and changes within the Swancore scene, I would like, with this investigation, to combine my interests on a new, statistical frontier. This portfolio is for a course in Computational Musicology at the Universiteit van Amsterdam.
   
   Using data collected by the **Spotify API** I will address 2 points of interest: 
+  
   1. **How the push towards a poppier sound influences the music's reception** 
+  
   2. **How this poppier sound informs/is informed by the music's other qualities (such as Key, Mode, Valence, and Danceability)**. 
 
   This investigation centres around 6 major Swancore artists; **Dance Gavin Dance (DGD)**, **A Lot Like Birds (ALLB)**, **Royal Coda (RC)**, **Stolas**, **Body Thief (BT)** and **Sianvar**. This corpus will also include a variety of smaller artists to show how these central figures have influenced more general trends across the genre as a whole.
@@ -71,6 +45,8 @@ Column {data-width=500}
   BT and Stolas **should present an interesting parallel**, having been formed within a few years of one another and initially possessing a **distinctly similar sound, even within Swancore**, and having released three albums each, the third of each respectively delving further into mainstream sounds than either band had done before (jazz and funk in Stolas' case, Western pop in BT's). But, while Stolas separated in 2018, BT continues to remain together to the present day. I hope that this parallel can help **identify how much popularity relies on recency**. Here too, the data on smaller bands should serve as an indicator of exactly how correlated popularity and danceability are.
     
   As a Swancore-adjacent **progressive post-hardcore band**, whose discography stretches across a far wider range of influences than DGD or any of the other bands in this corpus, I want to identify **if ALLB's popularity is correlated with its proximity of to Swancore/Poppier influences**. Similarily, I would like to take time to identify where Swancore as a genre lies, between its progressive post hardcore roots and pop-funk influences.
+  
+  Finally, Sianvar is a point of interest as being the first and to this date only **Swancore supergroup**, comprising of members of bands throughout the Swancore scene, including Dance Gavin Dance's Will Swan, Stolas' Sergio Medina, A Lot Like Birds' Joe Arrington, Hail the Sun's Donovan Melero. While the band is currently on hiatus, it should serve as an interesting look into a very specific point in Swancore's history - right at the cusp between second-generation Swancore and the Swancore we have today.
 
   One of the primary issues with assessing such a niche and complex genre is how data about it is gathered and catagorised. As the Spotify API runs on relationality (placing all data points in relation to one another), a genre still so linked with the less accessible (both musically and socially) post-hardcore scene will not have as large a range of popularity, danceability, and other subjective characteristics. As such, this portfolio only seeks to identify qualitative trends and will not speak to any quantitative differences/changes. 
 
@@ -109,29 +85,29 @@ BTplaylist <- get_playlist_audio_features('', '4gsZoA8LJMhQSiHU0ssakc')
 Sianvarplaylist <- get_playlist_audio_features('', '459ajSShZM6IyPohXIk4DK')
 
 DGDpopq <- DGDplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(Name = track.name, Album = track.album.name, Artists = track.artists, Release_Date = track.album.release_date, Popularity = track.popularity, Danceability = danceability, Key = key_name, Mode = mode_name)
 
 RCpopq <- RCplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(Name = track.name, Album = track.album.name, Artists = track.artists, Release_Date = track.album.release_date, Popularity = track.popularity, Danceability = danceability, Key = key_name, Mode = mode_name)
 
 Stolaspop_q <- Stolasplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(Name = track.name, Album = track.album.name, Artists = track.artists, Release_Date = track.album.release_date, Popularity = track.popularity, Danceability = danceability, Key = key_name, Mode = mode_name)
 
 ALLBpopq <- ALLBplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date =
+  summarise(Name = track.name, Album = track.album.name, Artists = track.artists, Release_Date =
       map_int(
         track.album.release_date,
         \(x) as.integer(str_sub(x, start = 1, end = 4))
-      ), track.popularity, danceability, key_name, mode_name)
+      ), Popularity = track.popularity, Danceability = danceability, Key = key_name, Mode = mode_name)
 
 SmallSwanpopq <- SmallSwanplaylist |>
   summarise(Name = track.name, Album = track.album.name, Artists = track.artists, Release_Date = year(track.album.release_date), Popularity = track.popularity, Danceability = danceability, Key = key_name, Mode = mode_name)
 
 BTpopq <- BTplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(Name = track.name, Album = track.album.name, Artists = track.artists, Release_Date = track.album.release_date, Popularity = track.popularity, Danceability = danceability, Key = key_name, Mode = mode_name)
 
 Sianvarpopq <- Sianvarplaylist |>
-  summarise(track.name, track.album.name, track.artists, track.album.release_date, track.popularity, danceability, key_name, mode_name)
+  summarise(Name = track.name, Album = track.album.name, Artists = track.artists, Release_Date = track.album.release_date, Popularity = track.popularity, Danceability = danceability, Key = key_name, Mode = mode_name)
 
 swancore <-
   get_playlist_audio_features(
@@ -172,14 +148,15 @@ Dance Gavin Dance {data-navmenu=Discographies}
 
 Column {data-width=800}
 --------------------------------
-### Dance Gavin Dance
-```{r DGDdiscog, fig.width=14, fig.height=8}
-plotDGDpop <- ggplot(DGDpopq, aes(x = year(track.album.release_date), y = danceability))
+```{r DGDdiscog, fig.width=13, fig.height=7}
+plotDGDpop <- ggplot(DGDpopq, aes(x = year(Release_Date), y = Danceability))
 
-plotDGDpop + geom_point(aes(size = track.popularity,
-                            fill = mode_name,
-                            colour = track.album.name),
+plotDGDpop + geom_point(aes(size = Popularity,
+                            fill = Mode,
+                            colour = Album),
                           shape = 23, stroke = 2, alpha = 0.5) +
+    geom_rug(sides = "l",
+           aes(colour = Album)) +
   geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) +
@@ -209,14 +186,15 @@ A Lot Like Birds {data-navmenu=Discographies}
 
 Column {data-width=800}
 -------------------------------------------
-### A Lot Like Birds
-```{r ALLBdiscog, fig.width=14, fig.height=8}
-plotALLBpop <- ggplot(ALLBpopq, aes(x = track.album.release_date, y = danceability))
+```{r ALLBdiscog, fig.width=13, fig.height=7}
+plotALLBpop <- ggplot(ALLBpopq, aes(x = Release_Date, y = Danceability))
 
-plotALLBpop + geom_point(aes(size = track.popularity,
-                            fill = mode_name,
-                            colour = track.album.name),
+plotALLBpop + geom_point(aes(size = Popularity,
+                            fill = Mode,
+                            colour = Album),
                           shape = 23, stroke = 2, alpha = 0.5) +
+    geom_rug(sides = "l",
+           aes(colour = Album)) +
   geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) +
@@ -236,7 +214,7 @@ Column {data-width=200}
 ### Analysis
 When interpreting A Lot Like Bird's graph, it is important to understand that the band, which is more influenced by (and thereby representative of) the **progressive post-hardcore** genre than it is of Swancore - with this knowledge in mind, it makes sense that its trend is a negative one, with danceability decreasing as time progresses and the band delved into a more eclectic and experimental style. Similarily, the peak in 2011 with the release of [**Conversation Piece**](https://open.spotify.com/album/00WQtQmL9Nh5E4MGwV5UC6) aligns with **Kurt Travis** (DGD's former clean vocalist) joining the band, and bringing his funk influences with him.
 
-Lo and behold, yet again two outliers and "most danceable" tracks in a band's discography are interludes or non-songs: [**Abbr.**](https://open.spotify.com/track/0lO2aVyX6YyB8jtKkyF52F) from **Conversation Piece** is a track which does not feature any variation - if anything, its consistency is its defining feature in an album which is otherwise fairly erratic. Similarily, [**In Trances**](https://open.spotify.com/track/2cwnPl1Rj06SLeeyfxXjwa), the introduction piece to 2013's [**No Place**](https://open.spotify.com/album/4WWw8pQHsxnWaWwpLvwZTS) is a spoken word poem supported a repeating sample of a grandfather clock chime over a trap beat. 
+Lo and behold, yet again two outliers and "most danceable" tracks in a band's discography are interludes or non-songs: [**Abbr.**](https://open.spotify.com/track/0lO2aVyX6YyB8jtKkyF52F) from **Conversation Piece** is a track which does not feature any variation - if anything, its consistency is its defining feature in an album which is otherwise fairly erratic. Similarily, [**In Trances**](https://open.spotify.com/track/2cwnPl1Rj06SLeeyfxXjwa), the introduction piece to 2013's [**No Place**](https://open.spotify.com/album/4WWw8pQHsxnWaWwpLvwZTS) is a spoken word poem supported a repeating sample of a grandfather clock chime over a trap beat.
 
 On the other end of the scale is [**Recluse**](https://open.spotify.com/track/1suT9SeCCHCaIwZtBQky1n) from **No Place**. According to drummer **Joseph Arrington** on [Rocksound (via Genius Lyrics)](https://genius.com/A-lot-like-birds-recluse-lyrics) "If there was ever a song that combined ideas, styles, chaos, melody and batty time signatures…this song is even worse (better?!) We took our strange phrasing ideas to the absolute limits with this song". This description of the song's "madness" is more than apt, its polyrhythmic foundation of 4/4 kick and 6/8 snare patterns are likely the reason for this song's lack of dancability. Like with Dance Gavin Dance, ALLB's characteristics point towards Spotify API focusing on consistency when deriving a track's danceability.
 
@@ -245,14 +223,15 @@ Royal Coda {data-navmenu=Discographies}
 
 Column {data-width=800}
 -----------------------------------------------------------------------
-### Royal Coda
-```{r RCdiscog, fig.width=14, fig.height=8}
-plotRCpop <- ggplot(RCpopq, aes(x = year(track.album.release_date), y = danceability))
+```{r RCdiscog, fig.width=13, fig.height=7}
+plotRCpop <- ggplot(RCpopq, aes(x = year(Release_Date), y = Danceability))
 
-plotRCpop + geom_point(aes(size = track.popularity,
-                            fill = mode_name,
-                            colour = track.album.name),
+plotRCpop + geom_point(aes(size = Popularity,
+                            fill = Mode,
+                            colour = Album),
                           shape = 23, stroke = 2, alpha = 0.5) +
+    geom_rug(sides = "l",
+           aes(colour = Album)) +
   geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) +
@@ -280,14 +259,15 @@ Stolas {data-navmenu=Discographies}
 
 Column {data-width=800}
 -----------------------
-### Stolas
-```{r Stolasdiscog, fig.width=14, fig.height=8}
-plotStolaspop <- ggplot(Stolaspop_q, aes(x = year(track.album.release_date), y = danceability))
+```{r Stolasdiscog, fig.width=13, fig.height=7}
+plotStolaspop <- ggplot(Stolaspop_q, aes(x = year(Release_Date), y = Danceability))
 
-plotStolaspop + geom_point(aes(size = track.popularity,
-                            fill = mode_name,
-                            colour = track.album.name),
+plotStolaspop + geom_point(aes(size = Popularity,
+                            fill = Mode,
+                            colour = Album),
                           shape = 23, stroke = 2, alpha = 0.5) +
+    geom_rug(sides = "l",
+           aes(colour = Album)) +
   geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) +
@@ -304,21 +284,29 @@ plotStolaspop + geom_point(aes(size = track.popularity,
 Column {data-width=200}
 ------------------------
 ### Analysis
-this is a breif comment
+From first glance, and contrary to the perception that Swancore (following Dance Gavin Dance) is moving towards a more danceable sound, Stolas' chart seems to indicate the opposite, that the band reached a peak in danceability with its second release, 2014's [**Allomaternal**](https://open.spotify.com/album/7M3EgIY0G4Z9zRpAZilNAa), and leveled out for its final release, the self-titled album, 2017's [**Stolas**](https://open.spotify.com/album/1ZjOAjlp3so6ze3YhqVUt0).
+
+However, it is worth noting that for the band's two earlier albums, the majoraty of songs are less danceable than from their third, self-titled one, and that a number of outliers do heavily influence the trend of the graph: [**Thief & the Hourglass**](https://open.spotify.com/track/3fw4SQj15UFWJ09cbRL4ov) and [**Captured Light**](https://open.spotify.com/track/7fdrDJgHHA2zYDhV7g4Pkh) from 2013's [**Living Creatures**](https://open.spotify.com/album/2CGJrdzrh3wKNoQTxrtN2L), [**Somatic**](https://open.spotify.com/track/2HiYE1awcmcscyz6ofynX6) from **Allomaternal**, and [**Euphoria**](https://open.spotify.com/track/6VGY2Mkz1XKLMf93yWKjyR) from **Stolas**.
+
+Of these, **Somatic** stands out as particularly clear support for the danceability hypothesis being investigated: the 5:11 minute song features a constant tempo and dynamics, and most importantly, a distinct rhythm. Whereas other songs on **Allomaternal** are truer to Stolas' eccentric and erratic sound, **Somatic's** consistency and trance-inducing repetition (which align with the song's lyrical context - being a dream of the album's protagonist [according to bassist RJ Reynolds](https://genius.com/Stolas-somatic-lyrics)) contribute to the Spotify API's interpretation of a relatively relaxed song as being a danceable one, and ultimately increases the average danceability of **Allomaternal** as an entire album.
+
+This being said, there is an alternative interpretation of the shape of Stolas' graph: a concept named Recapitulation.
+A phenomenon I have previously approached in [*Returning to the Tonic: Using Swancore to Expose Aesthetic Taxonomies as Restrictive Historical Agents in Music*](https://docs.google.com/document/d/14zvY3XThyIC6i_cTnS6MmbcwGZiHcHpRtJi16SFO12M/edit?usp=sharing), the conceptual consolidation of a genre's "ideal" sound is often responsible for inspiring gradual homogenisation in its sound over time (A cyclic process I denoted as "recapitulation"). Arguably the first band formed in the second generation of Swancore (ca. 2012 - 2017), Stolas' sound is still largely influenced by external genres, rather than being influenced by a perceived notion of what Swancore "needs" to sound like. In this manner, Stolas' diversion from the trends of Dance Gavin Dance and other Swancore bands could also be a result of having maintained a higher degree of creative input (conscious or otherwise) over their sound than the genre within which they are trying to write. Indeed, while newer Swancore bands tend to follow this trend towards danceability and pop, Stolas notably took influence from avante-guarde scenes when writing music for **Allomaternal** and **Stolas**, allowing them to secure for themselves a truly unique and (in my opinion) under-appreciated niche within the Swancore genre.
 
 Body Thief {data-navmenu=Discographies}
 ===================
 
 Column {data-width=800}
 ------------------------
-### Body Thief
-```{r BTdiscog, fig.width=14, fig.height=8}
-plotBTpop <- ggplot(BTpopq, aes(x = year(track.album.release_date), y = danceability))
+```{r BTdiscog, fig.width=13, fig.height=7}
+plotBTpop <- ggplot(BTpopq, aes(x = year(Release_Date), y = Danceability))
 
-plotBTpop + geom_point(aes(size = track.popularity,
-                            fill = mode_name,
-                            colour = track.album.name),
+plotBTpop + geom_point(aes(size = Popularity,
+                            fill = Mode,
+                            colour = Album),
                           shape = 23, stroke = 2, alpha = 0.5) +
+    geom_rug(sides = "l",
+           aes(colour = Album)) +
   geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) +
@@ -335,7 +323,11 @@ plotBTpop + geom_point(aes(size = track.popularity,
 Column {data-width=200}
 ----------------------------
 ### Analysis
-this is a breif comment
+For initially having a sound closely related to Stolas, Body Thief's graph tells a much different story: whereas the former's danceability tapered off with successive releases, the latter's has one of the most distinctive increases over time, across every band in this corpus. This difference quite possibly correlates with the bands' relatively different lifespans: Stolas was formed many years earlier and released its first album 2 years before Body Thief, and ended its career in 2018 (though they will reunite in June of 2023 for one night for the anniversary of **Living Creatures'** release). Body Thief's relative longevity, surviving 4 years longer, and recency via persisting to present-day, has allowed the band to adapt to newer trends in the Swancore sound. 
+
+Shame as it is, familiarity and consistency - two of the main characteristics of pop (and most popular music for that matter) - are fundamental to its success, and tend to . These characteristics are most prominent in Body Thief's latest album, 2022's [**Every Ending**](https://open.spotify.com/album/7kRZv0h7CdraxOKSckkp23), with songs like [**Death, Drugs and Dancing**](https://open.spotify.com/track/38ZDjkcdMwcjrRq1Q5b0ur), [**Exit Wound**](https://open.spotify.com/track/0vj4hhHJjZYPawCTngM5E1) [**All Our Love**](https://open.spotify.com/track/012QizJEpviJd0Iv7cDaHI) featuring the familiar pop "*verse -> chorus -> verse -> chorus -> bridge -> chorus -> outro*" structure, a major deviation from their previous albums more free-flowing organisation of verses and choruses, such as in [**Night Owls in Mating Season**](https://open.spotify.com/track/24BSQdul6wKDh7G5nqZMuK) from 2019's [**Travel Glow**](https://open.spotify.com/album/3xZAY20RXlXf9a4gTq0dGT). It comes as no surprise, then, that when looking at the graph, the 5 most danceable tracks all come from **Every Ending** (An album all whose tracks are above a 0.4 danceability, with most over 0.5), while the 5 least danceable (even excluding the to-be-mentioned outlier) are all from their earlier albums, with a majority from **Speak in Hibernation**.
+
+In terms of outliers, an outstanding one is [**Parasites in the Water**](https://open.spotify.com/track/0DIQwDTh69Jtw4DzseZTkZ) from 2015's [**Speak in Hibernation**](https://open.spotify.com/album/0DyqBldddjnywcVXSyChUB). This track has something of a [**Suffolk**](https://open.spotify.com/track/5qtZfqA5GaQtNOjfxy7f0g) (from Royal Coda) Syndrome, whereby the track enters and exits with a sample of a completely different tempo, timbre, and so forth. In this song's case, completely different to **Suffolk** it is actually a sample of unidentifiable tempo as it is of, per the song's name, the sound of running water and the lapping of waves. This disruption of Spotify's tempo analysis certainly contributes to the **Parasites in the Water's** incredibly low danceability (within the bottom 5 of this entire corpus), but also unlike **Suffolk**, the song is not particularly consistent to begin with - this would explain the difference of nearly 1 full unit of danceability seperating them. 
 
 Sianvar {data-navmenu=Discographies}
 ===================
@@ -343,14 +335,16 @@ Sianvar {data-navmenu=Discographies}
 Column {data-width=800}
 --------
 ### Sianvar
-```{r Sianvardiscog, fig.width=14, fig.height=8}
-plotSianvarpop <- ggplot(Sianvarpopq, aes(x = year(track.album.release_date), y = danceability))
+```{r Sianvardiscog, fig.width=13, fig.height=7}
+plotSianvarpop <- ggplot(Sianvarpopq, aes(x = year(Release_Date), y = Danceability))
 
-plotSianvarpop + geom_point(aes(size = track.popularity,
-                            fill = mode_name,
-                            colour = track.album.name),
+plotSianvarpop + geom_point(aes(size = Popularity,
+                            fill = Mode,
+                            colour = Album),
                           shape = 23, stroke = 2, alpha = 0.5) +
-  geom_smooth(span = 0.8) +
+  geom_rug(sides = "l",
+           aes(colour = Album)) +
+  geom_smooth() +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) +
   guides(alpha = "none") +
@@ -366,7 +360,7 @@ plotSianvarpop + geom_point(aes(size = track.popularity,
 Column {data-width=200}
 -------------
 ### Analysis
-this is a breif comment
+Given that there is not much data in this plot of Sianvar's discography, it is hard to make any guesses about the direction in which the band would have gone had it continued to exist. However, that is not to say that this data is useless: it actually serves as an apt snapshot of 
 
 Smaller Artists {data-navmenu=Discographies}
 =================
@@ -374,17 +368,19 @@ Smaller Artists {data-navmenu=Discographies}
 Column {data-width=800}
 --------------------------------
 ### Smaller Artists
-```{r SmallSwandiscog, fig.width=14, fig.height=8}
-plotSmallswanpop <- ggplot(SmallSwanpopq, aes(x = Release_Date, y = Danceability, label = Name)) + 
-  geom_jitter(aes(fill = Mode,
+```{r SmallSwandiscog, fig.width=13, fig.height=7}
+plotSmallswanpop <- ggplot(SmallSwanpopq, aes(label = Name)) +
+  geom_jitter(aes(x = Release_Date, 
+                  y = Danceability, 
+                  fill = Mode,
                   colour = Album),
-                  shape = 23, 
-                  stroke = 2, 
-                  alpha = 0.5, 
+                  shape = 23,
+                  stroke = 2,
+                  alpha = 0.5,
                   width = 0.30)
 
-finalplotSmallSwan <- plotSmallswanpop  +
-  geom_smooth() +
+finalplotSmallSwan <- plotSmallswanpop  + 
+  geom_smooth(aes(x = Release_Date, y = Danceability)) +
   theme(plot.title = element_text(face = "bold", size = 14),
         plot.caption = element_text(face = "italic", size = 9)) +
   guides(alpha = "none") +
@@ -504,7 +500,7 @@ Vfair |>
     )
   ) +
   geom_tile() +
-  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Pitch Analysis of Vanity's Fair (A Lot Like Birds, 2013)") +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Pitch Analysis of Vanity's Fair (A Lot Like Birds, 2011)") +
   theme_minimal() +
   scale_fill_viridis_c()
 ```
@@ -548,7 +544,7 @@ Vfairtimbre |>
     )
   ) +
   geom_tile() +
-  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Timbre Analysis of Vanity's Fair (A Lot like Birds, 2013)") +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Timbre Analysis of Vanity's Fair (A Lot like Birds, 2011)") +
   scale_fill_viridis_c() +
   theme_classic()
 ```
@@ -589,6 +585,33 @@ postcore |>
 
 Column {data-width=200}
 --------------
-
 ### Analysis
-this is another breif comment
+Now understanding that danceability, while correlated but not synonymous with a poppier sound, is based on structural qualities of a piece, a 
+
+Tempogram: A Lot Like Birds' Recluse
+=================
+Column {data-width=800}
+-------------------
+### Recluse (A Lot Like Birds, 2013)
+```{r TempogramALLB, echo=FALSE}
+recluse <- get_tidy_audio_analysis("1suT9SeCCHCaIwZtBQky1n")
+
+recluse |>
+  tempogram(window_size = 8, hop_size = 1, cyclic = FALSE) |>
+  ggplot(aes(x = time, y = bpm, fill = power)) +
+  geom_raster() +
+  scale_fill_viridis_c(guide = "none") +
+  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  theme_classic()
+```
+
+Column {data-width=200}
+-------------------
+### Analysis
+As discussed in the section on A Lot Like Birds's discography, the chaotic and "batty" (per Joe Arrington) **Recluse** from the album **No Place** is the band's least danceable song. This tempogram, a visual representation of the changes in tempo across the song's duration, should help gauge the accuracy of my earlier hypothesis regarding how Spotify's API conducts its measurement of a given track's danceability.
+
+Represented by lines of concentrated yellow, **Recluse's** tempo is shown to modulate quite dramatically at many parts of the track, with intense and fast-paced sections followed by much slower and drawn-out ones. Additionally, there are points in the track where the analysis is not very distinct or readable (such as between approx. 60 and 100 seconds into the track, where there are hardly any horizontal, "even" tempos represented by yellow lines, but rather an array of vertially oriented yellow dots projected seemingly at random). This inaccuracy is likely due to the difficult polyrhythmic drum patterns on which the piece is based, which I discussed in the earlier section (as a review, Arrington plays a 4/4 kick drum underneath a 6/8 snare pattern, each part of which guides a different section of the other instruments - Bass and the band's screamer follow the kick drum, while the guitars and clean vocalist follow the snare). Another possibility is the software confusing the heavy distortion throughout the song for percussive presence, which would confuse the tempo of the piece.
+
+This would explain why, between approx. 125 and 135 seconds, where there is a reduction in the thickness of the song's sound (guitars, bass and clean vocalist pull back, allowing drums and harsh vocals a much clearer presence), the graph is at its clearest, depicting a slight accelerando, or increase in speed around 250bmp, along with some less distinct but still visible tempo harmonics at 400 and 500bmp, respectively.
+
+In the end, it is likely that this song's structural complexity, in conjunction with strong variation througout the piece and an imprecise analysis by the Spotify API, are what contribute foremost to its low danceability. Expanding from this, it would explain why a good number of songs from ALLB's (and other Swancore bands') discographies are considered to have a low danceability despite having a discernably poppier timbre and influence: their structural complexity and variation impede upon their percieved ability to make someone dance. You can have an incredibly funky riff (such as in **Vanity's Fair** from **ALLB's Conversation Piece**), but it on its own won't make the piece more danceable if it's surrounded by grittier, inconsistent segments.
