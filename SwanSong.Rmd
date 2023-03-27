@@ -17,7 +17,87 @@ library(tidyverse)
 library(lubridate)
 library(compmus)
 library(plotly)
+library(ggdendro)
+library(heatmaply)
+library(tidymodels)
 ```
+
+Dendrogram {data-navmenu="Dendrogram and Heatmap"}
+=================
+Column {data-width=800}
+-----------------
+``` {r Dendrogram, echo = FALSE}
+Danceable_Swan <-
+  get_playlist_audio_features("", "2BqghI3Wpbl3Xhu34f0ogk") |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre))
+
+danceableswan_juice <-
+  recipe(
+    track.name ~
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      valence +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = Danceable_Swan
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  prep(Danceable_Swan |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+danceableswan_dist <- dist(danceableswan_juice, method = "euclidean")
+
+danceableswan_dist |> 
+  hclust(method = "average") |>
+  dendro_data(type = "rectangle") |>
+  ggdendrogram()
+```
+
+Column {data-width=200}
+-----------------
+### Analysis
+Working with a reduced playlist consisting of some of the most danceable songs from each album in the corpus, this cluster dendrogram attempts to cluster groups of songs together based on similar qualities. As will be seen in the heatmap page, these traits are the timbre coefficient, energy, valence, acousticness, speechiness and loudness variables provided by the Spotify API. 
+
+Looking at which songs cluster together, a few things stand out: ____ [analysis pending] 
+
+Heatmap {data-navmenu="Dendrogram and Heatmap"}
+=================
+Column {data-width=800}
+-----------------
+``` {r Heatmap, echo = FALSE}
+heatmaply(
+  danceableswan_juice,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
+Column {data-width=200}
+-----------------
+### Analysis
+[analysis pending]
 
 Introduction
 =================
@@ -83,6 +163,14 @@ ALLBplaylist <- get_playlist_audio_features('', '4P2pMy8FAhTRE61Sd10obo')
 SmallSwanplaylist <- get_playlist_audio_features('', '7muOOsQ7QSYY0e3hqZmX3C')
 BTplaylist <- get_playlist_audio_features('', '4gsZoA8LJMhQSiHU0ssakc')
 Sianvarplaylist <- get_playlist_audio_features('', '459ajSShZM6IyPohXIk4DK')
+TotalCorpus <- get_playlist_audio_features('', '7eWlDqwL0AB0Vnz6Iog4nf')
+
+Totalpopq <- TotalCorpus |>
+  summarise(Name = track.name, Album = track.album.name, Artists = track.artists, Release_Date =
+      map_int(
+        track.album.release_date,
+        \(x) as.integer(str_sub(x, start = 1, end = 4))
+      ), Popularity = track.popularity, Danceability = danceability, Key = key_name, Mode = mode_name, Valence = valence)
 
 DGDpopq <- DGDplaylist |>
   summarise(Name = track.name, Album = track.album.name, Artists = track.artists, Release_Date = track.album.release_date, Popularity = track.popularity, Danceability = danceability, Key = key_name, Mode = mode_name)
@@ -601,7 +689,7 @@ recluse |>
   ggplot(aes(x = time, y = bpm, fill = power)) +
   geom_raster() +
   scale_fill_viridis_c(guide = "none") +
-  labs(x = "Time (s)", y = "Tempo (BPM)") +
+  labs(x = "Time (s)", y = "Tempo (BPM)", title = "A Lot Like Birds' - Recluse") +
   theme_classic()
 ```
 
