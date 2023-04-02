@@ -5,7 +5,7 @@ date: "18-03-2023"
 output: 
   flexdashboard::flex_dashboard:
   storyboard: true
-theme: 
+theme: flatly
 orientation: columns
 vertical_layout: fill
 self_contained: false
@@ -56,7 +56,7 @@ Finally, Sianvar is a point of interest as being the first and only (to-date) **
 
 One of the primary issues with assessing such a niche and complex genre is how data about it is gathered and catagorised. As **the Spotify API runs on relationality** (placing all data points in relation to one another), a genre still so linked with the less accessible (both musically and socially) post-hardcore scene **will not have as large a range of popularity, danceability, and other subjective characteristics as more mainstream music**. As such, this portfolio will focus more on empirical qualitative trends than quantitative ones. 
 
-Tracks of interest in this corpus will be DGD's [*Summertime Gladness*](https://open.spotify.com/track/639JHsrGV8A9qUYSXhOwsw), ALLB's [*Recluse*](https://open.spotify.com/track/1suT9SeCCHCaIwZtBQky1n), RC's [*Even If*](https://open.spotify.com/track/3Z0epjTa2wAJ7GdjoE5110), BT's [*Death, Drugs & Dancing*](https://open.spotify.com/track/38ZDjkcdMwcjrRq1Q5b0ur), Stolas' [*Medusa (feat. Kurt Travis*](https://open.spotify.com/track/6vukAqZWkP8qQHOUmGGxZ5), Sianvar's [*Sick Machine*](https://open.spotify.com/track/3Oyx7TMoqzCY3QlSV5JAXP) and from smaller artists, Dwellings' [*Pick Up Before You Go*](https://open.spotify.com/track/3fhcFTnVfJE818TlVi2295).
+Tracks of interest in this corpus will be DGD's [*Summertime Gladness*](https://open.spotify.com/track/639JHsrGV8A9qUYSXhOwsw), ALLB's [*Recluse*](https://open.spotify.com/track/1suT9SeCCHCaIwZtBQky1n), BT's [*Death, Drugs & Dancing*](https://open.spotify.com/track/38ZDjkcdMwcjrRq1Q5b0ur), Stolas' [*Medusa (feat. Kurt Travis*](https://open.spotify.com/track/6vukAqZWkP8qQHOUmGGxZ5), Sianvar's [*Sick Machine*](https://open.spotify.com/track/3Oyx7TMoqzCY3QlSV5JAXP) and from smaller artists, Dwellings' [*Pick Up Before You Go*](https://open.spotify.com/track/3fhcFTnVfJE818TlVi2295).
 
 This little introduction aside, I hope you click, scroll, read and listen on, and that you enjoy the output of these past few weeks!
 
@@ -284,8 +284,8 @@ The Push to Pop: A Timbre Analysis {data-icon="ion-color-palette"}
   
 Column {data-width=800}
 ----------------------------
-  
-``` {r, echo=FALSE, fig.height=7 , fig.width=13}
+### Timbre Coefficient Comparisson
+``` {r push to pop, echo=FALSE, fig.width=13, fig.height=6}
 postcore <-
   swancore |>
   mutate(genre = "Swancore") |>
@@ -324,10 +324,10 @@ What is made clear from this representation is that Swancore situates an In-Betw
 
 Dance Gavin Dance {data-navmenu=Discographies data-icon="ion-music-note"}
 =================
-  
 Column {data-width=800}
 --------------------------------
-```{r DGDdiscog, fig.width=13, fig.height=7}
+### Dance Gavin Dance's Discography
+```{r DGDdiscog, echo=FALSE, fig.width=13, fig.height=6}
 plotDGDpop <- ggplot(DGDpopq, aes(x = year(Release_Date), y = Danceability))
 
 plotDGDpop + geom_point(aes(size = Popularity,
@@ -372,7 +372,8 @@ A Lot Like Birds {data-navmenu=Discographies data-icon="ion-music-note"}
   
 Column {data-width=800}
 -------------------------------------------
-```{r ALLBdiscog, fig.width=13, fig.height=7}
+### A Lot Like Birds' Discography
+```{r ALLBdiscog, echo=FALSE, fig.width=13, fig.height=6}
 plotALLBpop <- ggplot(ALLBpopq, aes(x = Release_Date, y = Danceability))
 
 plotALLBpop + geom_point(aes(size = Popularity,
@@ -414,7 +415,8 @@ Royal Coda {data-navmenu=Discographies data-icon="ion-music-note"}
   
 Column {data-width=800}
 -----------------------------------------------------------------------
-```{r RCdiscog, fig.width=13, fig.height=7}
+### Royal Coda's Discography
+```{r RCdiscog, echo=FALSE, fig.width=13, fig.height=6}
 plotRCpop <- ggplot(RCpopq, aes(x = year(Release_Date), y = Danceability))
 
 plotRCpop + geom_point(aes(size = Popularity,
@@ -457,7 +459,8 @@ Stolas {data-navmenu=Discographies data-icon="ion-music-note"}
   
 Column {data-width=800}
 -----------------------
-```{r Stolasdiscog, fig.width=13, fig.height=7}
+### Stolas' Discography
+```{r Stolasdiscog, echo=FALSE, fig.width=13, fig.height=6}
 plotStolaspop <- ggplot(Stolaspop_q, aes(x = year(Release_Date), y = Danceability))
 
 plotStolaspop + geom_point(aes(size = Popularity,
@@ -502,7 +505,8 @@ Body Thief {data-navmenu=Discographies data-icon="ion-music-note"}
   
 Column {data-width=800}
 ------------------------
-```{r BTdiscog, fig.width=13, fig.height=7}
+### Body Thief's Discography
+```{r BTdiscog, echo=FALSE, fig.width=13, fig.height=6}
 plotBTpop <- ggplot(BTpopq, aes(x = year(Release_Date), y = Danceability))
 
 plotBTpop + geom_point(aes(size = Popularity,
@@ -540,10 +544,10 @@ In terms of outliers, an outstanding one is [**Parasites in the Water**](https:/
 
 Sianvar {data-navmenu=Discographies data-icon="ion-music-note"}
 ===================
-Column {data-width=800}
+Column {data-width=800, echo=FALSE, fig.width=13, fig.height=6}
 --------------
-### Sianvar
-```{r Sianvardiscog, fig.width=13, fig.height=7}
+### Sianvar's Discography
+```{r Sianvardiscog, echo=FALSE, fig.width=13, fig.height=6}
 plotSianvarpop <- ggplot(Sianvarpopq, aes(x = year(Release_Date), y = Danceability))
 plotSianvarpop + geom_point(aes(size = Popularity,
                             fill = Mode,
@@ -578,10 +582,10 @@ However, the danceability of **Your Tongue Ties** throws a bit of a cog in the w
 Smaller Artists {data-navmenu=Discographies data-icon="ion-music-note"}
 =================
 
-Column {data-width=800}
+Column {data-width=800, echo=FALSE, fig.width=13, fig.height=6}
 --------------------------------
-### Smaller Artists
-```{r SmallSwandiscog, fig.width=13, fig.height=7}
+### Smaller Artists' Discographies
+```{r SmallSwandiscog, echo=FALSE}
 plotSmallswanpop <- ggplot(SmallSwanpopq, aes(label = Name)) +
   geom_jitter(aes(x = Release_Date, 
                   y = Danceability,
@@ -610,21 +614,21 @@ finalplotSmallSwan <- plotSmallswanpop  +
 Column {data-width=200}
 --------------------------------
 ### Analysis
-Needless to say, this graph comes as a bit of a surprise. With relatively little change in the average danceability across a decade of releases, one is led to believe that the genre as a whole has not experienced a change in sound, contradicting both my earlier claim and the trends shown in larger bands' discographies. So what's at play here? Largely, it seems to come down to individual outlier songs, and the influence of a few key bands. Before I describe these, I would like to apologise: I tried for the life of me to find a way to show the name of each piece's artist, but could not figure out how to do so. It is unpleasant, but you can double tap on the Album names in the legend to isolate them from the rest of the graph, and this should allow you to isolate each of the individual smaller artists' discographies for analysis.
+Needless to say, this graph comes as a bit of a surprise. With relatively **little change in the average danceability across nearly a decade of releases**, one is led to believe that the genre as a whole has not experienced a change in sound, contradicting both my earlier claim and the trends shown in larger bands' discographies. So what's at play here? Largely, it seems to come down to individual outlier songs, and the influence of a few key bands. Before I describe these, I would like to apologise: I tried for the life of me to find a way to show the name of each piece's artist, but could not figure out how to do so. It is unpleasant, but you can double-click on the album names in the legend to isolate them from the rest of the graph, and this should allow you to isolate each of the individual smaller artists' discographies for analysis.
 
 First, looking at outliers of incredibly high or low danceability, a few are immediately evident: [**Interlude**](https://open.spotify.com/track/7KPjcAyZ7IUgpjflmwqUnj) from [**Oranges'**](https://open.spotify.com/artist/66bYRtvkt11wjRvM05Mu5i) album [**Taxonomy**](https://open.spotify.com/album/1LZTxhxSWKkhh74QcGpfXT) on the high end, and [**I Met A Yeti's**](https://open.spotify.com/artist/3WXUVTFKEiMpV82ufkF7hL) [**Honey Bee**](https://open.spotify.com/track/2guUUg3RVzs4ipCzjEeBQ8) (from [**Camp Yeti**](https://open.spotify.com/album/6Tw87nrFbxYssiFRdK3vm3)) and [**Anemoria's**](https://open.spotify.com/artist/1WudWVQDLMeDWQMA7yCoMI) single, [**Lunatic Fringe**](https://open.spotify.com/track/2iGUUfjP0AH4fcT492dHZi), on the low end, respectively. As implied by its name, **Interlude** is an interlude in a larger album, and likely has a high danceability due to the reasons discussed with regards to **12 Hours, 630 Miles** and **Abbr.**, namely a short duration, consistent tempo, rhythm and time signature. With regards to **Honey Bee** and **Lunatic Fringe**, both feature incredible variations while also maintaining complicated rhythms in instrumentals and vocals alike throughout.
 
-Working with **Lunatic Fringe** in particular, and looking at **Anemoria's** work in general, their employ of funk influences in timbre and phrasing has not altered the chaotic structure which is typical of early Swancore and Progressive Post Hardcore, and as such most of their releases ([**Anemoria - EP**](https://open.spotify.com/album/0aUel7ohM4Xr67LcrJJ1Co), [**Cashmere Jungle**](https://open.spotify.com/album/4f0xzLy3ily1gNzrZ1YHBx), [**Jellybeans**](https://open.spotify.com/album/0bBmM2Y9mdqzsmG22JmdhW), [**Asomatous**](https://open.spotify.com/album/7mKFLJAqkmxOqyS3cagPs7), and **Lunatic Fringe**) are below the average danceability of the Smaller Artists corpus. Alongside **Anemoria** are **I Met A Yeti** (**Camp Yeti**, [**Red-Eyes B. Yeti**](https://open.spotify.com/album/2ZZwcUDgQeObl1l45uHY7P), [**Cthuwu**](https://open.spotify.com/album/6LmviDpfjlnbW0U7RxDJkG)) and [**Adam in the Bayou**](https://open.spotify.com/artist/7BatgFeldf47NeO1LIChyz) ([**Bon Ami**](https://open.spotify.com/album/1GRlhsHjzfogK4C7kQGnnb)), both of whom seem to emulate the sounds of early **Stolas** and **Dance Gavin Dance**, respectively. Coincidentally, **I Met A Yeti's** singer, **Daisy Chamberlain**, also features on the not-very-danceable [**Resilia's**]() [**Royal Flush**](https://open.spotify.com/album/6EEAflySFlJkayaqvaPQFz), though that song's lack of danceability likely arises from the unpredictable switches between regular and irregular bass-and-snare drum rhythms and fills. Joining their ranks seems to be [**AnimalJam**](https://open.spotify.com/artist/2imFAkbWl93TinNQv4ZX9b) ([**AnimalJam**](https://open.spotify.com/album/5aC3vtAwhR6zXMGAq8o0md), [**The Process of Dissention**](https://open.spotify.com/album/38BBqeKCnG6ZW97h8uka8p), [**Anhedonia**](https://open.spotify.com/album/4lQq6Hqs2bn2CiiGajltoe)), who have had a downward trend in danceability across their discography thus far.
+Working with **Lunatic Fringe** in particular, and looking at **Anemoria's** work in general, their **employ of funk influences in timbre and phrasing has not altered the chaotic structure** which is typical of early Swancore and Progressive Post Hardcore, and as such most of their releases ([**Anemoria - EP**](https://open.spotify.com/album/0aUel7ohM4Xr67LcrJJ1Co), [**Cashmere Jungle**](https://open.spotify.com/album/4f0xzLy3ily1gNzrZ1YHBx), [**Jellybeans**](https://open.spotify.com/album/0bBmM2Y9mdqzsmG22JmdhW), [**Asomatous**](https://open.spotify.com/album/7mKFLJAqkmxOqyS3cagPs7), and **Lunatic Fringe**) are below the average danceability of the Smaller Artists corpus. Alongside **Anemoria** are **I Met A Yeti** (**Camp Yeti**, [**Red-Eyes B. Yeti**](https://open.spotify.com/album/2ZZwcUDgQeObl1l45uHY7P), [**Cthuwu**](https://open.spotify.com/album/6LmviDpfjlnbW0U7RxDJkG)) and [**Adam in the Bayou**](https://open.spotify.com/artist/7BatgFeldf47NeO1LIChyz) ([**Bon Ami**](https://open.spotify.com/album/1GRlhsHjzfogK4C7kQGnnb)), both of whom seem to emulate the sounds of early **Stolas** and **Dance Gavin Dance**, respectively. Coincidentally, **I Met A Yeti's** singer, **Daisy Chamberlain**, also features on the not-very-danceable [**Resilia's**]() [**Royal Flush**](https://open.spotify.com/album/6EEAflySFlJkayaqvaPQFz), though that song's lack of danceability likely arises from the **unpredictable switches between regular and irregular bass-and-snare drum rhythms and fills**. Joining their ranks seems to be [**AnimalJam**](https://open.spotify.com/artist/2imFAkbWl93TinNQv4ZX9b) ([**AnimalJam**](https://open.spotify.com/album/5aC3vtAwhR6zXMGAq8o0md), [**The Process of Dissention**](https://open.spotify.com/album/38BBqeKCnG6ZW97h8uka8p), [**Anhedonia**](https://open.spotify.com/album/4lQq6Hqs2bn2CiiGajltoe)), who have had a **downward trend in danceability across their discography thus far.**
 
 On the other hand, artists within the Swancore scene such as [**Dwellings**](https://open.spotify.com/artist/2QNICn5WdFBTSwP6w6wbIM) ([**Lavender Town**](https://open.spotify.com/album/3kF45gCrexas616L4bWspb), [**Pick Up Before You Go**](https://open.spotify.com/album/3IWoaUyHiQNwJUqBmlams0), [**Devices**](https://open.spotify.com/album/1datXy9FkwmNwtKV5o3HHY)) and [**nightlife**](https://open.spotify.com/artist/2I31z7Tf5sQYjLBaK45Mlk) ([**new low**](https://open.spotify.com/album/777BczFgNRT1OpiJ2iQEQW), [**fallback**](https://open.spotify.com/album/4mrQUMaJiLAZD0t0koTvqi)) seem to be contributing to an even more structured, groovy (and more importantly, danceable) sound for the genre.
 
-Ultimately, it seems where danceability is involved, that there is a divergence in Swancore. Some bands are tending towards the more chaotic sound of the genre's roots, while others are more inclined to explore a more structured, mainstream approach to the hybrid fusion. 
+Ultimately, it seems **where danceability is involved, that there is a divergence in Swancore**. Some bands are tending towards the **more chaotic sound of the genre's roots**, while others are more inclined to explore a **more structured, mainstream approach to the hybrid fusion**. 
 
 Dance Gavin Dance's Summertime Gladness {data-navmenu="Chromagrams and Cepstograms" data-icon="fa-signal"}
 =================
 Column {data-width=330}
 ----------
-### Chromagram
+### Chromagram Summertime Gladness (Dance Gavin Dance, 2017)
 ``` {r DGDcromagram, echo = FALSE}
 Summertime <- get_tidy_audio_analysis("639JHsrGV8A9qUYSXhOwsw") |>
         select(segments) |>
@@ -637,7 +641,7 @@ Summertime <- get_tidy_audio_analysis("639JHsrGV8A9qUYSXhOwsw") |>
                 fill = value)
                 ) +
                                                                                                                                  geom_tile() +
-        labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Pitch Analysis of Summertime Gladness (Dance Gavin Dance, 2017)", caption = "Source: Spotify API") +
+        labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Chromagram: Summertime Gladness", caption = "Source: Spotify API") +
         theme_minimal() +
         scale_fill_viridis_c() +
         theme(plot.title = element_text(face = "bold", size = 14),
@@ -646,13 +650,16 @@ Summertime <- get_tidy_audio_analysis("639JHsrGV8A9qUYSXhOwsw") |>
 
 Column {data-width=340}
 -------------
+### Analysis
 This page hosts two graphical representations of [**Summertime Gladness**](https://open.spotify.com/track/639JHsrGV8A9qUYSXhOwsw), one of **Dance Gavin Dance's** most popular singles, and their most danceable according to Spotify's API.
-                                                                                                                             The Chromagram, which represents the frequency of specific pitches being played in a piece of music, registers large sections where the pitches being played are overwhelmingly G# and F#, and others where A#, D# and C# are more prominent: this difference outlines the seperation of verse and pre-chorus segments, which are chords and arpeggiated riffs involving those notes, respectiely. The bright yellow section of F# at the end is likely because of the shrill, sustained saxophone notes which play during the song's outro.
-                                                                                                                            The Cepstogram, which represents the intensity of specific timbre coefficients across a song's duration, indicates that the song is incredibly bright, based on the intensity of timbre coefficient 02. At the transitions from verse to pre-chorus (such as at 0:48), the change in timbre coefficient 05 (or thickness of the music) coincides with the reduction in number of instruments playing (removing the drums, bass, screamer and rhythm guitar from the section). Timbre coefficient 03 seems to match quite closely with the onset of each lyric/word, which leads me to believe that it is picking up on a certain vocal quality of each of the singers (perhaps smoothness/roughness as to match with the differences between Tilian's clean vocal sections and Jon's screamed ones).
+
+The Chromagram, which represents the frequency of specific pitches being played in a piece of music, registers large sections where the pitches being played are **overwhelmingly G# and F#**, and others where **A#, D# and C#** are more prominent: this difference outlines the seperation of **verse and pre-chorus segments**, which are **chords and arpeggiated riffs involving those notes**, respectiely. The bright yellow section of F# at the end is likely because of the shrill, sustained saxophone notes which play during the song's outro.
+
+The Cepstogram, which represents the intensity of specific timbre coefficients across a song's duration, **indicates that the song is incredibly bright**, based on the **intensity of timbre coefficient 02**. At the transitions from verse to pre-chorus (such as at 0:48), the change in timbre **coefficient 05 (or thickness of the music)** coincides with the **reduction in number of instruments playing** (removing the drums, bass, screamer and rhythm guitar from the section). Timbre coefficient 03 seems to match quite closely with the onset of each lyric/word, which leads me to believe that it is picking up on a certain vocal quality of each of the singers (perhaps smoothness/roughness as to match with the differences between Tilian's clean vocal sections and Jon's screamed ones).
 
 Column {data-width=330}
 --------
-### Cepstogram
+### Cepstogram Summertime Gladness (Dance Gavin Dance, 2017)
 ``` {r DGDcepstogram, echo = FALSE}
 Summertimetimbre <-
 get_tidy_audio_analysis("639JHsrGV8A9qUYSXhOwsw") |>
@@ -685,7 +692,7 @@ Summertimetimbre |>
     )
   ) +
   geom_tile() +
-  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Timbre Analysis of Summertime Gladness (Dance Gavin Dance, 2017)", caption = "Source: Spotify API") +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Chromagram: Summertime Gladness", caption = "Source: Spotify API") +
   scale_fill_viridis_c() +
   theme_classic() +
   theme(plot.title = element_text(face = "bold", size = 14),
@@ -696,7 +703,7 @@ Sianvar's Sick Machine {data-navmenu="Chromagrams and Cepstograms" data-icon="fa
 =================
 Column {data-width=330}
 ----------
-### Chromagram
+### Chromagram Sick Machine (Sianvar, 2014)
 ``` {r ALLBcromagram, echo = FALSE}
 sickmachine <- get_tidy_audio_analysis("3Oyx7TMoqzCY3QlSV5JAXP") |>
        select(segments) |>
@@ -710,7 +717,7 @@ sickmachine |>
        fill = value)
             ) +
        geom_tile() +
-       labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Pitch Analysis of Sick Machine (Sianvar, 2014)", caption = "Source: Spotify API") +
+       labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Chromagram: Sick Machine", caption = "Source: Spotify API") +
       theme_minimal() +
       scale_fill_viridis_c()+
       theme(plot.title = element_text(face = "bold", size = 14),
@@ -719,15 +726,16 @@ sickmachine |>
 
 Column {data-width=340}
 ---------
-This page hosts two graphical representations of [**Sick Machine**](https://open.spotify.com/album/3EFQ6Eg1zg1C0TNpGNqjSB),  Sianvar's second least danceable and popular song, according to Spotify's API. It also happens to be one of my favourites...
+### Analysis
+This page hosts two graphical representations of [**Sick Machine**](https://open.spotify.com/album/3EFQ6Eg1zg1C0TNpGNqjSB),  Sianvar's second least danceable and popular song, according to Spotify's API. It also happens to be one of my favourites... so everybody else must be wrong ;)
 
-Chromagram shows a prolific presence of the pitch B throughout the entire piece, particularly during the first 30 seconds of the piece: this links with the distorted guitar drone which backs up the drum fills that serve as an introduction to the piece. the following erratic representation of notes coincides with the actual piece, which plays a repeating riff of deafeningly fast ascending steps, which constitutes much of the remaining piece excluding the nearly minute-and-a-half long outro which consists of a similar prolonged set of the pitch E, travelling occasionally to a powerful A, G and B before ending the piece.
+The chromagram shows a **prolific presence of the pitch B** throughout the entire piece, particularly during the **first 30 seconds of the song**: this links with the **distorted guitar drone** which backs up the drum fills serving as an introduction. the following erratic representation of notes coincides with the actual piece, which plays a **repeating riff of deafeningly fast ascending steps**, which constitutes much of the remaining piece excluding the nearly minute-and-a-half long outro which consists of a similar prolonged set of the pitch E, travelling occasionally to a powerful A, G and B before ending the piece.
 
-The Cepstogram features a very intense coefficient 02, which is associated with the piece's brightness. This makes sense, both the tone of guitar and voice being quite light (though with distortion almost nauseating), but is also quite ironic considering the heavy lyrical content of the song, which viscerally covers the position of soldiers in a combat, while making pointed references to the Vietnam war. Additionally, my proposition that coefficient 03 deals with smoothness or roughness of voice seems to be correct, as at 1:01 singer **Donovan Melero's** softest section occurs, and at 1:20, his roughest scream. Both timestamps have the most intense moments of c03 in the representation.
+The cepstogram features a very **intense coefficient 02**, which is associated with the piece's brightness. This makes sense, both **the tone of guitar and voice being quite light** (though with distortion, almost nauseating), but is also quite **ironic considering the heavy lyrical content of the song**, which viscerally **covers the position of soldiers in a combat**, while making pointed references to the Vietnam war. Additionally, my proposition that **coefficient 03 deals with smoothness or roughness of voice seems to be correct**, as at 1:01 singer **Donovan Melero's** softest section occurs, and at 1:20, his roughest scream. Both timestamps have the most intense moments of c03 in the song.
 
 Column {data-width=330}
 --------
-### Cepstogram
+### Cepstogram Sick Machine (Sianvar, 2014)
 ``` {r ALLBcepstogram, echo = FALSE}
 sicktimbre <- get_tidy_audio_analysis("3Oyx7TMoqzCY3QlSV5JAXP") |>
      compmus_align(beats, segments) |>
@@ -750,7 +758,7 @@ sicktimbre |>
         fill = value)
                ) +
         geom_tile() +
-        labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Timbre Analysis of Sick Machine (Sianvar, 2014)", caption = "Source: Spotify API") +
+        labs(x = "Time (s)", y = NULL, fill = "Magnitude", title = "Cepstogram: Sick Machine", caption = "Source: Spotify API") +
         scale_fill_viridis_c() +
         theme_classic() +
         theme(plot.title = element_text(face = "bold", size = 14),
@@ -759,11 +767,10 @@ sicktimbre |>
 
 Body Thief's Death, Drugs & Dancing {data-navmenu="Self-Similarity Matrices" data-icon="ion-android-contacts"}
 ==================
-Column {data-width=800}
+Column {data-width=800 .tabset .tabset-fade}
 --------------------------------
-### Self-Similarity Matrice: Death, Drugs & Dancing
-
-``` {r ssm, echo=FALSE, fig.width=13, fig.height=7}
+### Timbre Self-Similarity Matrix
+``` {r ssm, echo=FALSE}
 DDDssm <-
   get_tidy_audio_analysis("38ZDjkcdMwcjrRq1Q5b0ur") |> # Change URI.
   compmus_align(bars, segments) |>                     # Change `bars`
@@ -799,19 +806,56 @@ DDDssm |>
   coord_fixed() +
   scale_fill_viridis_c(guide = "none") +
   theme_classic() +
-  labs(x = "", y = "")
+  labs(x = "", y = "", title = "Timbre SSM: Death, Drugs & Dancing", caption = "Source: Spotify API") +
+   theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9))
 ```
 
+### Chroma Self-Similarity Matrix
+``` {r chromassm, echo=FALSE}
+dddchromassm <-
+  get_tidy_audio_analysis("38ZDjkcdMwcjrRq1Q5b0ur") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+
+compmus_long_distance(
+  dddchromassm |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  dddchromassm |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "euclidean"
+) |>
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_equal() +
+  labs(x = "", y = "", title = "Chroma SSM: Death, Drugs & Dancing", caption = "Source: Spotify API") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL) +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9))
+```
+
+Column {data-width=200}
+--------------------
 ### Analysis
-**Death, Drugs & Dancing**, from the album **Every Ending**, is one of Body Thief's most popular songs, and their most danceable. The consistency which has hitherto been associated with danceability continues to prove accurate, as the song's timbre self-similarity matrix does not have many lines of intensity indicating novelty (with the exception of the piece's bridge, at approx 160 seconds). The dark checkerboard pattern which is present is indicative of repetition, while the lack of secondary or tertiary diagonal lines parallel to the one along *x=y* is indicative that there is enough variation to keep it from being direct repetition.
+**Death, Drugs & Dancing**, from the album **Every Ending**, is one of Body Thief's most popular songs, and their most danceable. The *consistency which has hitherto been associated with danceability continues to prove accurate*, as the song's timbre self-similarity matrix does not have many lines of intensity indicating novelty (with the exception of the piece's bridge, at approx 160 seconds). The dark checkerboard pattern which is present is indicative of repetition. 
+
+Looking at the chroma self-similarity matrix, the lack of secondary or tertiary diagonal lines parallel to the one along *x=y* indicates that **there is enough variation to keep it from being direct repetition**, but the *grain of the graph* also shows that the **actual pitches themselves are repeated quite frequently**.
 
 Stolas' Medusa (feat. Kurt Travis) {data-navmenu="Self-Similarity Matrices" data-icon="ion-android-contacts"}
 ==================
-Column {data-width=800}
+Column {data-width=800 .tabset .tabset-fade}
 --------------------------------
-### Self-Similarity Matrice: 
-
-``` {r ssmmedusa, echo=FALSE, fig.width=13, fig.height=7}
+### Timbre Self-Similarity Matrix 
+``` {r ssmmedusa, echo=FALSE}
 medusa <-
   get_tidy_audio_analysis("6vukAqZWkP8qQHOUmGGxZ5") |> # Change URI.
   compmus_align(bars, segments) |>                     # Change `bars`
@@ -847,20 +891,60 @@ medusa |>
   coord_fixed() +
   scale_fill_viridis_c(guide = "none") +
   theme_classic() +
-  labs(x = "", y = "")
+  labs(x = "", y = "", title = "Timbre SSM: Medusa (feat. Kurt Travis)", caption = "Source: Spotify API") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL) +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9))
 ```
 
-### Analysis
-Completely unlike **Body Thief's** timbre self-similarity matrix, **Stolas'** [**Medusa (feat.Kurt Travis)'s**](), from their album **Living Creatures**, is chalk-full of novelty from beginning to end. The first intense change is at 26 seconds, with the shift from a distored ebb-and-flow to a powerful guitar riff (0:25), and then again with the introduction of drums and rhythm guitar at 0:31, and then yet again with the introduction of screamed vocals at 0:51. The song continues at the same pace for a while, until around 1:30, where a bass version of the intro riff takes hold of the piece. Then; Kurt Travis enters, throwing the entire piece on its head with a slow, soothing melody. This persists, and mellows out, most of the novelty of the piece explored until 2:50, with the introduction of yet another verse structure to the piece, followed by another new introduction of a guitar solo. The outro, removing the drums entirely for a soft vocal exit adds the final spin to the piece.
+### Chroma Self-Similarity Matrix
+``` {r chromassmmedusa, echo=FALSE}
+medusachroma <-
+  get_tidy_audio_analysis("6vukAqZWkP8qQHOUmGGxZ5") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
 
-It's no wonder that this is the second least danceable song in Stolas' repertoire, even if it's one of the coolest.
+compmus_long_distance(
+  medusachroma |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  medusachroma |> mutate(pitches = map(pitches, compmus_normalise, "chebyshev")),
+  feature = pitches,
+  method = "euclidean"
+) |>
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_equal() +
+  labs(x = "", y = "", title = "Chroma SSM: Medusa (feat. Kurt Travis)", caption = "Source: Spotify API") +
+  theme_minimal() +
+  scale_fill_viridis_c(guide = NULL) +
+  theme(plot.title = element_text(face = "bold", size = 14),
+        plot.caption = element_text(face = "italic", size = 9))
+```
+
+Column {data-width=200}
+------------------
+### Analysis
+Completely unlike **Body Thief's** timbre self-similarity matrix, **Stolas'** [**Medusa (feat.Kurt Travis)'s**](), from their album **Living Creatures**, is **chalk-full of novelty from beginning to end**. The first intense change is at 26 seconds, with the shift from a **distored ebb-and-flow to a powerful guitar riff**, and then again with the **introduction of drums and rhythm guitar at 0:31**, and then yet again with the **introduction of screamed vocals at 0:51**. The song continues at the same pace for a while, until around 1:30, where a **bass version of the intro riff** takes hold of the piece. Then; **Kurt Travis** enters, throwing the entire piece on its head with a **slow, soothing melody**. This persists, and mellows out, most of the novelty of the piece explored until 2:50, with the introduction of yet another verse structure to the piece, followed by another new introduction of a **guitar solo**. The outro, **removing the drums entirely for a soft vocal exit** adds the final spin to the piece.
+
+Looking at the chroma self-similarity matrix, the chaos of the piece is truly captured by the **vibrant array of pitches being represented** at all most times - a distinct **exception being for the aforementioned Kurt Travis feature**, in which the intensity pulls back so that his voice receives the most attention for that section. The other section with relatively **low chroma representation is the introductory ebb-and-flow guitar section**, which is only one note. The rest of the song, however, epitomises the chaos of the early Swancore sound.
+
+It's no wonder that this is the **second least danceable song in Stolas' repertoire**, even if it's one of the coolest.
 
 A Lot Like Birds' Recluse {data-navmenu=Tempograms data-icon="ion-ios-speedometer"}
 =================
   
 Column {data-width=800}
 -------------------
-### Recluse (A Lot Like Birds, 2013)
+### Tempogram: Recluse (A Lot Like Birds, 2013)
 ```{r TempogramALLB, echo=FALSE}
 recluse <- get_tidy_audio_analysis("1suT9SeCCHCaIwZtBQky1n")
 
@@ -878,13 +962,13 @@ recluse |>
 Column {data-width=200}
 -------------------
 ### Analysis
-As discussed in the section on A Lot Like Birds's discography, the chaotic and "batty" (per Joe Arrington) **Recluse** from the album **No Place** is the band's least danceable song. This tempogram, a visual representation of the changes in tempo across the song's duration, should help gauge the accuracy of my earlier hypothesis regarding how Spotify's API conducts its measurement of a given track's danceability.
+As discussed in the section on A Lot Like Birds's discography, the **chaotic and "batty"** (per Joe Arrington) **Recluse** from the album **No Place** is the band's **least danceable song**. This tempogram, a visual representation of the changes in tempo across the song's duration, should help gauge the accuracy of my earlier hypothesis regarding how Spotify's API conducts its measurement of a given track's danceability.
 
-Represented by lines of concentrated yellow, **Recluse's** tempo is shown to modulate quite dramatically at many parts of the track, with intense and fast-paced sections followed by much slower and drawn-out ones. Additionally, there are points in the track where the analysis is not very distinct or readable (such as between approx. 60 and 100 seconds into the track, where there are hardly any horizontal, "even" tempos represented by yellow lines, but rather an array of vertially oriented yellow dots projected seemingly at random). This inaccuracy is likely due to the difficult polyrhythmic drum patterns on which the piece is based, which I discussed in the earlier section (as a review, Arrington plays a 4/4 kick drum underneath a 6/8 snare pattern, each part of which guides a different section of the other instruments - Bass and the band's screamer follow the kick drum, while the guitars and clean vocalist follow the snare). Another possibility is the software confusing the heavy distortion throughout the song for percussive presence, which would confuse the tempo of the piece.
+Represented by lines of concentrated yellow, **Recluse's** tempo is shown to modulate quite dramatically at many parts of the track, with **intense and fast-paced sections followed by much slower and drawn-out ones**. Additionally, there are points in the track where the **analysis is not very distinct or readable** (such as between approx. 60 and 100 seconds into the track, where there are **hardly any horizontal, "even" tempos** represented by yellow lines, but rather an **array of vertially oriented yellow dots projected seemingly at random**). This inaccuracy is likely due to the **difficult polyrhythmic drum patterns on which the piece is based**, which I discussed in the earlier section (as a review, Arrington plays a **4/4 kick drum underneath a 6/8 snare pattern**, each part of which guides a different section of the other instruments - **Bass and the band's screamer follow the kick drum, while the guitars and clean vocalist follow the snare**). Another possibility is the software confusing the heavy distortion throughout the song for percussive presence, which would confuse the tempo of the piece.
 
-This would explain why, between approx. 125 and 135 seconds, where there is a reduction in the thickness of the song's sound (guitars, bass and clean vocalist pull back, allowing drums and harsh vocals a much clearer presence), the graph is at its clearest, depicting a slight accelerando, or increase in speed around 250bmp, along with some less distinct but still visible tempo harmonics at 400 and 500bmp, respectively.
+This would explain why, between approx. 125 and 135 seconds, where there is a reduction in the thickness of the song's sound (guitars, bass and clean vocalist pull back, allowing drums and harsh vocals a much clearer presence), the graph is **at its clearest, depicting a slight accelerando, or increase in speed, around 250bmp**, along with some less distinct but still visible tempo harmonics at 400 and 500bmp, respectively.
 
-In the end, it is likely that this song's structural complexity, in conjunction with strong variation througout the piece and an imprecise analysis by the Spotify API, are what contribute foremost to its low danceability. Expanding from this, it would explain why a good number of songs from ALLB's (and other Swancore bands') discographies are considered to have a low danceability despite having a discernably poppier timbre and influence: their structural complexity and variation impede upon their percieved ability to make someone dance. You can have an incredibly funky riff (such as in **Vanity's Fair** from **ALLB's Conversation Piece**), but it on its own won't make the piece more danceable if it's surrounded by grittier, inconsistent segments.
+In the end, it is likely that this song's **structural complexity, in conjunction with strong variation** througout the piece and an **imprecise analysis by the Spotify API**, are what **contribute foremost to its low danceability**. Expanding from this, it would explain why a good number of songs from ALLB's (and other Swancore bands') discographies are considered to have a **low danceability despite having a discernably poppier timbre and influence**: their **structural complexity and variation impede upon their percieved ability to make someone dance**. You can have an incredibly funky riff (such as in **Vanity's Fair** from **ALLB's Conversation Piece**), but it on its own won't make the piece more danceable if it's surrounded by grittier, inconsistent segments.
 
 Dwellings' Pick Up Before You Go {data-navmenu=Tempograms data-icon="ion-ios-speedometer"}
 =================
@@ -907,15 +991,16 @@ pickup <- get_tidy_audio_analysis("3fhcFTnVfJE818TlVi2295")
 Column {data-width=200}
 -------------------
 ### Analysis
-**Dwellings**, a band known quite well within the Swancore community for having given the genre a soul of its own (in both the figurative and genre sense of the word), released [**Pick Up Before You Go**]() as a single in 2019. The song, which is 14th most danceable in this entire corpus, is exemplary of the consistent structure = danceable hypothesis. The tempogram, which shows a clear tempo and tempo harmonic steady throughout the piece, breaking only for a brief ritardando at 2:24 where the piece has its bridge. Otherwise, the tempo is unchanging throughout.
+**Dwellings**, a band known quite well within the Swancore community for having given the genre a **soul of its own** (in both the figurative and genre sense of the word), released [**Pick Up Before You Go**](https://open.spotify.com/track/3fhcFTnVfJE818TlVi2295) as a single in 2019. The song, which is 14th most danceable in this entire corpus, is exemplary of the **"consistent structure = danceable"** hypothesis. The tempogram, which shows a **clear tempo and tempo harmonic** steadily throughout the piece, breaking only for a **brief ritardando at 2:24 where the piece has its bridge**. Otherwise, the tempo is unchanging throughout.
 
-The perceived tempo of approx 240bpm seems incredibly high (because it is), but on closer listening it appears that the Spotify API has latched onto the guitar and synth 16th notes which play in the intro and verses as the basis for tempo as opposed to the drums underneath. In this case, while still officially incorrect, the Spotify API still has the relative tempo correct as it is measuring using a tempo harmonic.
+The perceived **tempo of approx 240bpm seems incredibly high** (because it is), but on closer listening it appears that the Spotify API has **latched onto the guitar and synth 16th notes** which play in the intro and verses as the basis for tempo as opposed to the drums underneath. In this case, while still **officially incorrect**, the Spotify API still has the **correct relative tempo** as it is measuring using a tempo harmonic.
 
-Dendrogram: Clustering Swancore Songs {data-navmenu="Dendrogram and Heatmap" data-icon="ion-color-filter-outline"}
+Dendrogram and Heatmap {data-icon="ion-ios-keypad"}
 =================
-Column {data-width=800}
+Column {data-width=800 .tabset .tabset-fade}
 -----------------
-``` {r Dendrogram, echo = FALSE}
+### Dendrogram: Clustering Similar Swancore Songs
+``` {r Dendrogram, echo=FALSE, fig.width=13, fig.height=6}
 Danceable_Swan <- get_playlist_audio_features("", "2BqghI3Wpbl3Xhu34f0ogk") |>
       add_audio_analysis() |>
   mutate(segments = map2(segments, key, compmus_c_transpose),
@@ -949,20 +1034,8 @@ danceableswan_dist |> hclust(method = "average") |>
   ggdendrogram()
 ```
 
-Column {data-width=200}
------------------
-### Analysis
-Working with a reduced playlist consisting of some of the most danceable songs from each album in the corpus, this cluster dendrogram attempts to cluster groups of songs together based on similar qualities. As will be seen in the heatmap page, these traits are the timbre coefficient, energy, valence, acousticness, speechiness and loudness variables provided by the Spotify API. 
-
-Looking at which songs cluster together, a few things stand out: primarily, the clustering of songs with the same singer, or same instrumentalists. On the left of the dendrogram, four songs of Dance Gavin Dance's where **Tilian** is performing clean vocals ([**Pray To God For Your Mother**](https://open.spotify.com/track/2Qe9uwtzPzPVCGiughoQ68), [**Suspended in This Disaster**](https://open.spotify.com/track/4KUAQglE3qVryAeCaElw3U), **Summertime Gladness** and [**Calentamiento GLobal**](https://open.spotify.com/track/7Dju1FHuCiOlOkIXyNYKOU)) have been clustered together, broken only by two Sianvar tracks featuring **Will Swan** as their guitarist ([**Coordinate Love**](https://open.spotify.com/track/4xgHAZq63gDQdi3hGlfLlT), and **Your Tongue Ties**). 
-
-However, the further up you go, some more interesting connections are made: for instance, the two tracks last incorperated into the cluster both feature **Kurt Travis** on vocals. In fact, for a singer whose songs make up nearly a 3rd of this dendrogram (7 songs in total across 3 bands), his songs are relatively spread out across the dendrogram. Perhaps this indicates that he is an incredibly versatile singer, or that he continues to find ways to make his same funk inspirations sound new within the genre he has learned to call his own.
-
-Heatmap: Identifying Clustering Processes {data-navmenu="Dendrogram and Heatmap" data-icon="ion-color-filter-outline"}
-=================
-Column {data-width=800}
------------------
-``` {r Heatmap, echo = FALSE}
+### Heatmap: Identifying Clustering Processes
+``` {r Heatmap, echo=FALSE, fig.width=13, fig.height=6}
 heatmaply(
   danceableswan_juice,
   hclustfun = hclust,
@@ -974,7 +1047,13 @@ heatmaply(
 Column {data-width=200}
 -----------------
 ### Analysis
-In this heatmap, we are better able to see similarities between different subjectivity variables (such as the timbre coefficients) adn the songs which they are trying to assess. On the heatmap, sonic proximity is denoted through a similarity in colour. For instance, for many songs, and [**Uneasy Hearts Weigh The Most**](https://open.spotify.com/track/5oC0AAgJ7RoWOT3HznLMe1) in particular, timbre coefficient 06 and acousticness have a deep-seeded similarity (shown in their similar shade of bright yellow), which leads to them clustering with one another in the first stage of the heatmap.
+Working with a reduced playlist consisting of some of the most danceable songs from each album in the corpus, this cluster dendrogram attempts to cluster groups of songs together based on similar qualities. As can be seen in the heatmap tab, these traits are the timbre coefficients, energy, valence, acousticness, speechiness and loudness variables provided by the Spotify API. 
+
+Looking at which songs cluster together, a few things stand out: primarily, the clustering of songs with the same singer, or same instrumentalists. On the left of the dendrogram, four songs of Dance Gavin Dance's where **Tilian** is performing clean vocals ([**Pray To God For Your Mother**](https://open.spotify.com/track/2Qe9uwtzPzPVCGiughoQ68), [**Suspended in This Disaster**](https://open.spotify.com/track/4KUAQglE3qVryAeCaElw3U), **Summertime Gladness** and [**Calentamiento GLobal**](https://open.spotify.com/track/7Dju1FHuCiOlOkIXyNYKOU)) have been clustered together, broken only by two Sianvar tracks featuring **Will Swan** as their guitarist ([**Coordinate Love**](https://open.spotify.com/track/4xgHAZq63gDQdi3hGlfLlT), and **Your Tongue Ties**). 
+
+However, the further up you go, some more interesting connections are made: for instance, the two tracks last incorperated into the cluster both feature **Kurt Travis** on vocals. In fact, for a singer whose **songs make up nearly a 3rd of this dendrogram (7 songs in total across 3 bands)**, his songs are **relatively spread out across the dendrogram**. Perhaps this indicates that he is an incredibly **versatile singer**, or that he continues to find ways to make his same funk inspirations sound new within the genre he has learned to call his own.
+
+In the heatmap, we are better able to see similarities between different subjectivity variables (such as the timbre coefficients) and the songs which they are trying to assess. On the heatmap, sonic proximity is denoted through a similarity in colour. For instance, for many songs, and [**Uneasy Hearts Weigh The Most**](https://open.spotify.com/track/5oC0AAgJ7RoWOT3HznLMe1) in particular, timbre coefficient 06 and acousticness have a deep-seeded similarity (shown in their similar shade of bright yellow), which leads to them clustering with one another in the first stage of the heatmap.
 
 This is an interactive graph, and really quite intuitive, so I suggest listening to these songs individually and figuring out for yourself whether you agree with the way in which they match up.
 
@@ -986,7 +1065,7 @@ In conclusion, we were able to discern the answers to the two questions asked in
 
 2. The push towards danceability less so *influenced* the music's other features, than was *influenced by* them - with more repetitive and coherent songs being considered more danceable by the Spotify API. However, this API too has some issues, which we came to realise:
 
-We've discovered too, that the Spotify API has a hard time discerning whether a track is actually meant to be danced to: Interludes, Reprises and Abbreviations of all musical sorts were among the most danceable in the corpus, despite often being placed where they were to offer a breath of fresh air from all the head-banging these albums are meant to induce. Perhaps, if the API were to consider track duration into the danceability variable, it would be more accurate with circumventing these issues. Or, perhaps it doesn't care: after all, danceability has nothing to do with intent, ony capability. Regardless, it's been a fun (if stressful) project, and it is time to lay down my computer.
+We've discovered too, that the Spotify API has a hard time discerning whether a track is actually meant to be danced to: Interludes, Reprises and Abbreviations of all musical sorts were among the most danceable in the corpus, despite often being placed where they were to offer a breath of fresh air from all the head-banging these albums are meant to induce. Perhaps, if the API were to consider track duration into the danceability variable, it would be more accurate with circumventing these issues. Or, perhaps it doesn't care: after all, danceability has nothing to do with intent, only capability. Regardless, it's been a fun (if stressful) project, and it is time to lay down my computer.
 
 Thank you for coming on this statistical journey with me. It was fun. 
 
